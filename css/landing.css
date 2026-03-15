@@ -190,6 +190,26 @@
   color: var(--text-primary);
 }
 
+/* Bouton Connexion dans la navbar */
+.nav-login-link {
+  text-decoration: none;
+  color: var(--accent-light);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 8px 20px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.nav-login-link:hover {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 16px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
 .nav-mobile-toggle {
   display: none;
   flex-direction: column;
