@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FlowState — Conditions Générales d'Utilisation">
+  <title>FlowState — Conditions G&eacute;n&eacute;rales d'Utilisation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#0a0a0f">
+  <style>
+    .legal-page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .legal-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .legal-header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .legal-header .logo-icon {
+      color: var(--accent);
+      font-size: 1.3rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-light);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      transition: all var(--transition-fast);
+    }
+
+    .back-link:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .legal-container {
+      flex: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+      width: 100%;
+    }
+
+    .legal-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .legal-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+    }
+
+    .legal-section {
+      margin-bottom: 40px;
+    }
+
+    .legal-section h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .legal-section h2 .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      background: var(--accent);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .legal-section p,
+    .legal-section ul {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .legal-section ul {
+      padding-left: 20px;
+    }
+
+    .legal-section ul li {
+      margin-bottom: 6px;
+    }
+
+    .legal-section ul li::marker {
+      color: var(--accent-light);
+    }
+
+    .legal-section strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .legal-section a {
+      color: var(--accent-light);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition-fast);
+    }
+
+    .legal-section a:hover {
+      border-bottom-color: var(--accent-light);
+    }
+
+    .legal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+
+    .legal-footer {
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .legal-footer p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .legal-footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .legal-title {
+        font-size: 1.75rem;
+      }
+
+      .legal-container {
+        padding: 40px 16px 60px;
+      }
+
+      .legal-section h2 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated background -->
+  <div class="bg-canvas">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="legal-page">
+
+    <!-- Header -->
+    <header class="legal-header">
+      <a href="landing.html" class="logo">
+        <span class="logo-icon">&#9670;</span>
+        <span class="logo-text">FlowState</span>
+      </a>
+      <a href="landing.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        Retour
+      </a>
+    </header>
+
+    <!-- Content -->
+    <div class="legal-container">
+      <h1 class="legal-title">Conditions G&eacute;n&eacute;rales d'Utilisation</h1>
+      <p class="legal-subtitle">Derni&egrave;re mise &agrave; jour : Mars 2025</p>
+
+      <!-- 1. Objet -->
+      <section class="legal-section">
+        <h2><span class="section-number">1</span> Objet</h2>
+        <p>
+          Les pr&eacute;sentes Conditions G&eacute;n&eacute;rales d'Utilisation (ci-apr&egrave;s &laquo; CGU &raquo;) ont pour objet de d&eacute;finir les modalit&eacute;s et conditions d'acc&egrave;s et d'utilisation de l'application <strong>FlowState</strong>, accessible &agrave; l'adresse flowstate.app.
+        </p>
+        <p>
+          FlowState est un tableau de bord de productivit&eacute; permettant la gestion de t&acirc;ches, la prise de notes, le suivi de sessions de concentration et l'organisation personnelle.
+        </p>
+        <p>
+          L'utilisation de FlowState implique l'acceptation pleine et enti&egrave;re des pr&eacute;sentes CGU. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser le service.
+        </p>
+      </section>
+
+      <!-- 2. Accès au service -->
+      <section class="legal-section">
+        <h2><span class="section-number">2</span> Acc&egrave;s au service</h2>
+        <p>
+          FlowState est accessible <strong>gratuitement</strong> dans sa version de base, depuis tout navigateur web compatible (Chrome, Firefox, Safari, Edge).
+        </p>
+        <p>
+          Des <strong>fonctionnalit&eacute;s premium</strong> sont disponibles via un abonnement payant, offrant des outils avanc&eacute;s de productivit&eacute;, de personnalisation et d'analyse.
+        </p>
+        <p>
+          FlowState s'efforce d'assurer la disponibilit&eacute; du service 24h/24 et 7j/7, mais ne peut garantir une disponibilit&eacute; absolue. Des interruptions pour maintenance, mise &agrave; jour ou pour des raisons techniques ind&eacute;pendantes de notre volont&eacute; peuvent survenir.
+        </p>
+      </section>
+
+      <!-- 3. Inscription -->
+      <section class="legal-section">
+        <h2><span class="section-number">3</span> Inscription</h2>
+        <p>
+          La version gratuite de FlowState <strong>ne n&eacute;cessite aucune cr&eacute;ation de compte</strong> ni inscription. L'application fonctionne enti&egrave;rement en local dans votre navigateur.
+        </p>
+        <p>
+          Pour acc&eacute;der aux fonctionnalit&eacute;s premium, un compte peut &ecirc;tre requis. Dans ce cas, l'utilisateur s'engage &agrave; fournir des informations exactes et &agrave; jour, et &agrave; pr&eacute;server la confidentialit&eacute; de ses identifiants de connexion.
+        </p>
+      </section>
+
+      <!-- 4. Propriété intellectuelle -->
+      <section class="legal-section">
+        <h2><span class="section-number">4</span> Propri&eacute;t&eacute; intellectuelle</h2>
+        <p>
+          L'ensemble des &eacute;l&eacute;ments composant FlowState &mdash; incluant sans s'y limiter le code source, le design, les textes, les graphismes, les logos, les ic&ocirc;nes, les animations et l'architecture logicielle &mdash; sont la <strong>propri&eacute;t&eacute; exclusive</strong> de FlowState et sont prot&eacute;g&eacute;s par le droit de la propri&eacute;t&eacute; intellectuelle fran&ccedil;ais et international.
+        </p>
+        <p>
+          Toute reproduction, repr&eacute;sentation, modification, distribution ou exploitation, totale ou partielle, de ces &eacute;l&eacute;ments, sans autorisation &eacute;crite pr&eacute;alable, est strictement interdite et constitue une contrefa&ccedil;on sanctionn&eacute;e par les articles L.335-2 et suivants du Code de la propri&eacute;t&eacute; intellectuelle.
+        </p>
+        <p>
+          Les contenus cr&eacute;&eacute;s par l'utilisateur (t&acirc;ches, notes, etc.) restent sa <strong>propri&eacute;t&eacute; enti&egrave;re</strong>.
+        </p>
+      </section>
+
+      <!-- 5. Responsabilité -->
+      <section class="legal-section">
+        <h2><span class="section-number">5</span> Responsabilit&eacute;</h2>
+        <p>
+          FlowState est fourni <strong>&laquo; tel quel &raquo;</strong> (<em>as is</em>), sans garantie d'aucune sorte, expresse ou implicite.
+        </p>
+        <ul>
+          <li>FlowState ne garantit pas la <strong>disponibilit&eacute; permanente</strong> ni l'absence d'erreurs du service</li>
+          <li>FlowState ne saurait &ecirc;tre tenu responsable de la <strong>perte de donn&eacute;es locales</strong> r&eacute;sultant d'un effacement du localStorage, d'un changement de navigateur, d'une r&eacute;initialisation de l'appareil ou de toute autre cause ext&eacute;rieure</li>
+          <li>L'utilisateur est seul responsable de la <strong>sauvegarde de ses donn&eacute;es</strong></li>
+          <li>FlowState ne saurait &ecirc;tre tenu responsable de dommages directs ou indirects li&eacute;s &agrave; l'utilisation ou &agrave; l'impossibilit&eacute; d'utiliser le service</li>
+        </ul>
+      </section>
+
+      <!-- 6. Abonnement et paiement -->
+      <section class="legal-section">
+        <h2><span class="section-number">6</span> Abonnement et paiement</h2>
+        <p>
+          L'acc&egrave;s aux fonctionnalit&eacute;s premium est soumis &agrave; la souscription d'un abonnement payant.
+        </p>
+        <div class="legal-card">
+          <ul>
+            <li><strong>Paiement</strong> &mdash; Le paiement est trait&eacute; de mani&egrave;re s&eacute;curis&eacute;e par <strong>Stripe</strong>. FlowState n'a jamais acc&egrave;s &agrave; vos donn&eacute;es bancaires compl&egrave;tes.</li>
+            <li><strong>Renouvellement</strong> &mdash; L'abonnement est renouvel&eacute; automatiquement &agrave; chaque &eacute;ch&eacute;ance (mensuelle ou annuelle selon la formule choisie), sauf annulation pr&eacute;alable par l'utilisateur.</li>
+            <li><strong>Annulation</strong> &mdash; L'utilisateur peut annuler son abonnement &agrave; tout moment depuis son espace de gestion ou en contactant le support. L'annulation prend effet &agrave; la fin de la p&eacute;riode de facturation en cours.</li>
+            <li><strong>Remboursement</strong> &mdash; Conform&eacute;ment &agrave; l'article L.221-28 du Code de la consommation, le droit de r&eacute;tractation ne s'applique pas aux contenus num&eacute;riques non fournis sur support mat&eacute;riel dont l'ex&eacute;cution a commenc&eacute; avec l'accord du consommateur.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 7. Résiliation -->
+      <section class="legal-section">
+        <h2><span class="section-number">7</span> R&eacute;siliation</h2>
+        <p>
+          L'utilisateur peut cesser d'utiliser FlowState <strong>&agrave; tout moment</strong>, sans pr&eacute;avis ni justification.
+        </p>
+        <p>
+          Pour la version gratuite, il suffit de ne plus acc&eacute;der &agrave; l'application. Les donn&eacute;es locales peuvent &ecirc;tre supprim&eacute;es en vidant le localStorage du navigateur.
+        </p>
+        <p>
+          Pour les abonn&eacute;s premium, la r&eacute;siliation de l'abonnement peut &ecirc;tre effectu&eacute;e &agrave; tout moment. L'acc&egrave;s aux fonctionnalit&eacute;s premium est maintenu jusqu'&agrave; la fin de la p&eacute;riode de facturation en cours.
+        </p>
+        <p>
+          FlowState se r&eacute;serve le droit de suspendre ou de r&eacute;silier l'acc&egrave;s d'un utilisateur en cas de violation des pr&eacute;sentes CGU.
+        </p>
+      </section>
+
+      <!-- 8. Données personnelles -->
+      <section class="legal-section">
+        <h2><span class="section-number">8</span> Donn&eacute;es personnelles</h2>
+        <p>
+          FlowState s'engage &agrave; respecter la vie priv&eacute;e de ses utilisateurs conform&eacute;ment au R&egrave;glement G&eacute;n&eacute;ral sur la Protection des Donn&eacute;es (RGPD) et &agrave; la loi Informatique et Libert&eacute;s.
+        </p>
+        <p>
+          Pour conna&icirc;tre en d&eacute;tail les pratiques de FlowState en mati&egrave;re de collecte et de traitement des donn&eacute;es, veuillez consulter notre <a href="privacy.html"><strong>Politique de confidentialit&eacute;</strong></a>.
+        </p>
+      </section>
+
+      <!-- 9. Modifications des CGU -->
+      <section class="legal-section">
+        <h2><span class="section-number">9</span> Modifications des CGU</h2>
+        <p>
+          FlowState se r&eacute;serve le droit de modifier les pr&eacute;sentes CGU &agrave; tout moment. Les modifications entrent en vigueur d&egrave;s leur publication sur cette page, avec mise &agrave; jour de la date indiqu&eacute;e en haut du document.
+        </p>
+        <p>
+          Il est conseill&eacute; de consulter r&eacute;guli&egrave;rement cette page afin de prendre connaissance des &eacute;ventuelles modifications. La poursuite de l'utilisation du service apr&egrave;s modification des CGU vaut acceptation des nouvelles conditions.
+        </p>
+      </section>
+
+      <!-- 10. Droit applicable -->
+      <section class="legal-section">
+        <h2><span class="section-number">10</span> Droit applicable et juridiction comp&eacute;tente</h2>
+        <p>
+          Les pr&eacute;sentes CGU sont r&eacute;gies et interpr&eacute;t&eacute;es conform&eacute;ment au <strong>droit fran&ccedil;ais</strong>.
+        </p>
+        <p>
+          En cas de litige relatif &agrave; l'interpr&eacute;tation, l'ex&eacute;cution ou la r&eacute;siliation des pr&eacute;sentes CGU, et &agrave; d&eacute;faut d'accord amiable, les parties conviennent de soumettre leur diff&eacute;rend aux <strong>tribunaux comp&eacute;tents de Toulouse</strong> (France).
+        </p>
+        <p>
+          Conform&eacute;ment &agrave; l'article L.612-1 du Code de la consommation, l'utilisateur est inform&eacute; qu'il peut recourir &agrave; un m&eacute;diateur de la consommation en cas de litige non r&eacute;solu.
+        </p>
+        <div class="legal-card">
+          <p><strong>Contact :</strong> <a href="mailto:contact@flowstate.app">contact@flowstate.app</a></p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="legal-footer">
+      <p>&copy; 2025 FlowState. Tous droits r&eacute;serv&eacute;s. &mdash; <a href="privacy.html">Politique de confidentialit&eacute;</a></p>
+    </footer>
+  </div>
+</body>
+</html>
