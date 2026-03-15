@@ -5,7 +5,7 @@
 
 import { Storage } from './modules/storage.js';
 import { Timer } from './modules/timer.js';
-import { AmbientEngine } from './modules/ambient.js';
+import { AudioPlayer } from './modules/audioplayer.js';
 import { Gamification } from './modules/gamification.js';
 import { NotificationManager } from './modules/notifications.js';
 
@@ -32,7 +32,7 @@ function lucideIcon(name) {
 const App = {
   currentView: 'dashboard',
   timer: null,
-  ambient: null,
+  audioPlayer: null,
   gamification: null,
   notifications: null,
   tasks: [],
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNotifications();
   initClock();
   initTimer();
-  initAmbient();
+  initAudioPlayer();
   initNavigation();
   initTheme();
   initTasks();
@@ -487,36 +487,217 @@ function updateFocusUI() {
   document.getElementById('sessionCount').textContent = `${Storage.getTodayStats().sessions || 0} sessions`;
 }
 
-// ── Ambient ──
-function initAmbient() {
-  App.ambient = new AmbientEngine();
-  const grid = document.getElementById('ambientGrid');
-
-  App.ambient.presets.forEach(preset => {
-    const btn = document.createElement('button');
-    btn.className = 'ambient-btn';
-    btn.dataset.id = preset.id;
-    btn.innerHTML = `<span>${preset.icon}</span> ${preset.label}`;
-    btn.addEventListener('click', () => {
-      const active = App.ambient.toggle(preset.id);
-      btn.classList.toggle('active', active);
-      if (active) App.gamification.onSoundTry(preset.id);
-    });
-    grid.appendChild(btn);
-  });
-
-  document.getElementById('ambientVolume').addEventListener('input', (e) => {
-    App.ambient.setVolume(e.target.value / 100);
-  });
-
-  document.getElementById('ambientToggle').addEventListener('click', () => {
-    if (App.ambient.active.size > 0) {
-      App.ambient.stopAll();
-      document.querySelectorAll('.ambient-btn').forEach(b => b.classList.remove('active'));
-      toast('Ambiance désactivée', 'info');
-    } else {
-      toast('Sélectionnez un son ambiant', 'info');
+// ── Audio Player ──
+function initAudioPlayer() {
+  App.audioPlayer = new AudioPlayer((event) => {
+    switch (event.type) {
+      case 'play':
+        updatePlayerUI(true);
+        document.getElementById('audioTrackName').textContent = event.track.name || '—';
+        document.getElementById('audioTrackArtist').textContent = event.track.artist || '';
+        document.getElementById('audioPlayer').style.display = 'block';
+        highlightTrack(event.index);
+        break;
+      case 'pause':
+        updatePlayerUI(false);
+        break;
+      case 'timeupdate':
+        if (event.duration) {
+          document.getElementById('audioTimeCurrent').textContent = App.audioPlayer.formatTime(event.current);
+          document.getElementById('audioTimeDuration').textContent = App.audioPlayer.formatTime(event.duration);
+          document.getElementById('audioProgressFill').style.width = `${(event.current / event.duration) * 100}%`;
+        }
+        break;
+      case 'trackAdded':
+      case 'trackRemoved':
+        renderTracklist();
+        break;
+      case 'spotifyReady':
+        document.getElementById('spotifySearch').style.display = 'block';
+        document.getElementById('spotifyConnectBtn').innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="#1DB954"><circle cx="12" cy="12" r="10"/></svg>';
+        toast('Spotify connecté', 'success');
+        break;
+      case 'spotifyError':
+        toast('Erreur Spotify: ' + event.message, 'error');
+        break;
     }
+  });
+
+  // Check for Spotify token from callback
+  const spotifyToken = JSON.parse(localStorage.getItem('flowstate_spotify_token') || 'null');
+  if (spotifyToken) {
+    localStorage.removeItem('flowstate_spotify_token');
+    App.audioPlayer.setSpotifyToken(spotifyToken);
+  } else {
+    App.audioPlayer.checkSpotifyToken();
+  }
+
+  // Drop zone
+  const dropzone = document.getElementById('audioDropzone');
+  const fileInput = document.getElementById('audioFileInput');
+
+  dropzone.addEventListener('click', () => fileInput.click());
+
+  dropzone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropzone.classList.add('dragover');
+  });
+
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+
+  dropzone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    handleFiles(e.dataTransfer.files);
+  });
+
+  fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+  async function handleFiles(files) {
+    for (const file of files) {
+      if (file.type.startsWith('audio/')) {
+        await App.audioPlayer.addTrack(file);
+        toast(`${file.name} ajouté`, 'success');
+      }
+    }
+    renderTracklist();
+  }
+
+  // Player controls
+  document.getElementById('audioPlayPause').addEventListener('click', () => {
+    if (App.audioPlayer.tracks.length === 0) return;
+    if (App.audioPlayer.currentIndex < 0) App.audioPlayer.play(0);
+    else App.audioPlayer.toggle();
+  });
+
+  document.getElementById('audioPrev').addEventListener('click', () => App.audioPlayer.prev());
+  document.getElementById('audioNext').addEventListener('click', () => App.audioPlayer.next());
+
+  document.getElementById('audioShuffle').addEventListener('click', () => {
+    const on = App.audioPlayer.toggleShuffle();
+    document.getElementById('audioShuffle').classList.toggle('active', on);
+  });
+
+  document.getElementById('audioRepeat').addEventListener('click', () => {
+    const on = App.audioPlayer.toggleRepeat();
+    document.getElementById('audioRepeat').classList.toggle('active', on);
+  });
+
+  document.getElementById('audioVolume').addEventListener('input', (e) => {
+    App.audioPlayer.setVolume(e.target.value / 100);
+  });
+
+  // Progress bar seek
+  document.getElementById('audioProgressBar').addEventListener('click', (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const percent = (e.clientX - rect.left) / rect.width;
+    App.audioPlayer.seek(percent);
+  });
+
+  // Spotify
+  document.getElementById('spotifyConnectBtn').addEventListener('click', () => {
+    if (App.audioPlayer.spotifyToken) {
+      App.audioPlayer.disconnectSpotify();
+      document.getElementById('spotifySearch').style.display = 'none';
+      document.getElementById('spotifyConnectBtn').innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>';
+      toast('Spotify déconnecté', 'info');
+    } else {
+      App.audioPlayer.initiateSpotifyAuth();
+    }
+  });
+
+  document.getElementById('spotifySearchBtn')?.addEventListener('click', async () => {
+    const query = document.getElementById('spotifySearchInput').value.trim();
+    if (!query) return;
+    const results = await App.audioPlayer.searchSpotify(query);
+    renderSpotifyResults(results);
+  });
+
+  document.getElementById('spotifySearchInput')?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('spotifySearchBtn').click();
+  });
+
+  // Ambient toggle button in topbar now controls audio player
+  document.getElementById('ambientToggle').addEventListener('click', () => {
+    if (App.audioPlayer.isPlaying) {
+      App.audioPlayer.pause();
+      toast('Musique en pause', 'info');
+    } else if (App.audioPlayer.tracks.length > 0) {
+      if (App.audioPlayer.currentIndex < 0) App.audioPlayer.play(0);
+      else App.audioPlayer.play();
+      toast('Lecture reprise', 'info');
+    } else {
+      toast('Ajoute des pistes pour commencer', 'info');
+    }
+  });
+
+  renderTracklist();
+}
+
+function renderTracklist() {
+  const list = document.getElementById('audioTracklist');
+  const tracks = App.audioPlayer.tracks;
+  list.innerHTML = '';
+  document.getElementById('audioTrackCount').textContent = `${tracks.length} piste${tracks.length !== 1 ? 's' : ''}`;
+
+  tracks.forEach((track, i) => {
+    const item = document.createElement('div');
+    item.className = `audio-track-item ${i === App.audioPlayer.currentIndex ? 'playing' : ''}`;
+    item.innerHTML = `
+      <span class="track-num">${i === App.audioPlayer.currentIndex && App.audioPlayer.isPlaying ? '\u25B6' : i + 1}</span>
+      <div class="track-info">
+        <span class="track-name">${escapeHtml(track.name)}</span>
+        <span class="track-meta">${track.artist || (track.type === 'spotify' ? 'Spotify' : 'Fichier local')} \u00B7 ${App.audioPlayer.formatTime(track.duration)}</span>
+      </div>
+      <button class="track-remove" title="Retirer">\u2715</button>
+    `;
+    item.addEventListener('click', (e) => {
+      if (e.target.closest('.track-remove')) return;
+      App.audioPlayer.play(i);
+    });
+    item.querySelector('.track-remove').addEventListener('click', () => {
+      App.audioPlayer.removeTrack(track.id);
+    });
+    list.appendChild(item);
+  });
+}
+
+function highlightTrack(index) {
+  document.querySelectorAll('.audio-track-item').forEach((el, i) => {
+    el.classList.toggle('playing', i === index);
+    el.querySelector('.track-num').textContent = i === index && App.audioPlayer.isPlaying ? '\u25B6' : i + 1;
+  });
+}
+
+function updatePlayerUI(playing) {
+  const btn = document.getElementById('audioPlayPause');
+  btn.innerHTML = playing
+    ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>'
+    : '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+  highlightTrack(App.audioPlayer.currentIndex);
+}
+
+function renderSpotifyResults(results) {
+  const container = document.getElementById('spotifyResults');
+  container.innerHTML = '';
+  results.forEach(track => {
+    const item = document.createElement('div');
+    item.className = 'spotify-result-item';
+    item.innerHTML = `
+      ${track.cover ? `<img class="spotify-result-cover" src="${track.cover}" alt="">` : ''}
+      <div class="spotify-result-info">
+        <div class="spotify-result-name">${escapeHtml(track.name)}</div>
+        <div class="spotify-result-artist">${escapeHtml(track.artist)}</div>
+      </div>
+      <button class="spotify-result-add">+ Ajouter</button>
+    `;
+    item.querySelector('.spotify-result-add').addEventListener('click', () => {
+      App.audioPlayer.tracks.push({ ...track, id: Date.now() + Math.random() });
+      App.audioPlayer.saveTracks();
+      renderTracklist();
+      toast(`${track.name} ajouté`, 'success');
+    });
+    container.appendChild(item);
   });
 }
 
@@ -1019,7 +1200,7 @@ function initCommandPalette() {
     { icon: lucideIcon('play-circle'), label: 'Timer Start/Pause', action: () => App.timer.toggle(), shortcut: 'Space' },
     { icon: lucideIcon('rotate-ccw'), label: 'Timer Reset', action: () => App.timer.reset() },
     { icon: lucideIcon('moon'), label: 'Toggle Theme', action: () => document.getElementById('themeToggle').click() },
-    { icon: lucideIcon('volume-x'), label: 'Stop Ambient', action: () => { App.ambient.stopAll(); document.querySelectorAll('.ambient-btn').forEach(b => b.classList.remove('active')); } },
+    { icon: lucideIcon('volume-x'), label: 'Stop Musique', action: () => { App.audioPlayer.pause(); } },
     { icon: lucideIcon('maximize'), label: 'Fullscreen', action: () => document.getElementById('fullscreenToggle').click() },
   ];
 

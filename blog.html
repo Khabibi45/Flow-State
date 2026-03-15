@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog FlowState : articles sur la productivit&eacute;, la technique Pomodoro, la concentration, la gamification et les meilleurs outils de gestion de t&acirc;ches gratuits.">
+  <meta name="keywords" content="blog productivit&eacute;, technique pomodoro, concentration, gamification, outils gestion t&acirc;ches, focus, travail efficace, sons ambiants, FlowState">
+  <meta name="author" content="FlowState">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://flowstate.app/blog">
+  <meta name="language" content="fr">
+  <meta http-equiv="content-language" content="fr">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://flowstate.app/blog">
+  <meta property="og:title" content="Blog FlowState — Productivit&eacute; & Focus">
+  <meta property="og:description" content="Conseils, astuces et guides pour booster ta productivit&eacute;. Pomodoro, concentration, gamification et plus encore.">
+  <meta property="og:image" content="https://flowstate.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="FlowState">
+  <meta property="og:locale" content="fr_FR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://flowstate.app/blog">
+  <meta name="twitter:title" content="Blog FlowState — Productivit&eacute; & Focus">
+  <meta name="twitter:description" content="Conseils, astuces et guides pour booster ta productivit&eacute;. Pomodoro, concentration, gamification.">
+  <meta name="twitter:image" content="https://flowstate.app/assets/og-image.png">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icon-192.png">
+  <link rel="mask-icon" href="assets/icon.svg" color="#7c3aed">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Blog FlowState — Productivit&eacute; & Focus</title>
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    .blog-hero { padding: 8rem 0 3rem; text-align: center; }
+    .blog-hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; }
+    .blog-filters { display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 3rem; flex-wrap: wrap; }
+    .blog-filter-btn { padding: 0.5rem 1.25rem; border-radius: 999px; border: 1px solid rgba(124,58,237,0.3); background: transparent; color: #ccc; cursor: pointer; font-size: 0.9rem; transition: all 0.3s; }
+    .blog-filter-btn:hover, .blog-filter-btn.active { background: rgba(124,58,237,0.2); border-color: #7c3aed; color: #fff; }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+    .blog-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 1rem; padding: 2rem; transition: transform 0.3s, border-color 0.3s; }
+    .blog-card:hover { transform: translateY(-4px); border-color: rgba(124,58,237,0.4); }
+    .blog-card-tag { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: rgba(124,58,237,0.15); color: #a78bfa; margin-bottom: 1rem; }
+    .blog-card h2 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3; }
+    .blog-card h2 a { color: #fff; text-decoration: none; }
+    .blog-card h2 a:hover { color: #a78bfa; }
+    .blog-card-meta { display: flex; gap: 1rem; font-size: 0.8rem; color: #888; margin-bottom: 1rem; }
+    .blog-card-excerpt { color: #aaa; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.25rem; }
+    .blog-card-link { color: #a78bfa; font-weight: 600; text-decoration: none; font-size: 0.9rem; }
+    .blog-card-link:hover { text-decoration: underline; }
+    .blog-faq { max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    .blog-faq h2 { font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 2rem; }
+    .faq-item { border: 1px solid rgba(255,255,255,0.06); border-radius: 0.75rem; margin-bottom: 1rem; overflow: hidden; }
+    .faq-question { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq-answer { padding: 0 1.5rem 1.25rem; color: #aaa; line-height: 1.7; }
+    @media (max-width: 600px) {
+      .blog-hero h1 { font-size: 1.8rem; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-canvas">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="landing-nav">
+    <div class="container nav-inner">
+      <a href="landing.html" class="nav-logo">
+        <span class="logo-icon">&#9670;</span>
+        <span class="logo-text">FlowState</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="landing.html#features">Features</a></li>
+        <li><a href="landing.html#pricing">Pricing</a></li>
+        <li><a href="blog.html" style="color:#a78bfa;">Blog</a></li>
+        <li><a href="landing.html#privacy">Privacy</a></li>
+      </ul>
+      <a href="login.html" class="nav-login-link">Connexion</a>
+      <a href="login.html" class="btn btn-primary btn-sm">Lancer l'app</a>
+      <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="landing.html#features">Features</a>
+      <a href="landing.html#pricing">Pricing</a>
+      <a href="blog.html">Blog</a>
+      <a href="landing.html#privacy">Privacy</a>
+      <a href="login.html" class="btn btn-primary btn-sm" style="margin-top:0.5rem;">Lancer l'app</a>
+    </div>
+  </nav>
+
+  <!-- Blog Hero -->
+  <section class="blog-hero">
+    <div class="container">
+      <h1 class="fade-in">Blog FlowState &mdash; <span class="text-gradient">Productivit&eacute; & Focus</span></h1>
+      <p class="hero-subtitle fade-in">Guides, astuces et m&eacute;thodes pour maximiser ta concentration et ta productivit&eacute; au quotidien.</p>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <div class="blog-filters fade-in">
+    <button class="blog-filter-btn active" data-filter="all">Toutes</button>
+    <button class="blog-filter-btn" data-filter="productivite">Productivit&eacute;</button>
+    <button class="blog-filter-btn" data-filter="concentration">Concentration</button>
+    <button class="blog-filter-btn" data-filter="outils">Outils</button>
+  </div>
+
+  <!-- Blog Articles Grid -->
+  <div class="blog-grid">
+
+    <!-- Article 1: Pomodoro -->
+    <article class="blog-card fade-in" data-category="productivite" itemscope itemtype="https://schema.org/Article">
+      <meta itemprop="datePublished" content="2025-03-10">
+      <meta itemprop="author" content="FlowState">
+      <meta itemprop="image" content="https://flowstate.app/assets/og-image.png">
+      <span class="blog-card-tag">Productivit&eacute;</span>
+      <h2 itemprop="headline"><a href="#pomodoro">La technique Pomodoro : Guide complet 2025</a></h2>
+      <div class="blog-card-meta">
+        <span>Par FlowState</span>
+        <span>10 mars 2025</span>
+        <span>4 min de lecture</span>
+      </div>
+      <div class="blog-card-excerpt" itemprop="articleBody">
+        <p>La technique Pomodoro est l'une des m&eacute;thodes de gestion du temps les plus efficaces au monde. Invent&eacute;e par Francesco Cirillo dans les ann&eacute;es 1980, elle repose sur un principe simple : travailler par intervalles de 25 minutes, s&eacute;par&eacute;s par de courtes pauses de 5 minutes. Apr&egrave;s quatre cycles, une pause longue de 15 &agrave; 30 minutes est recommand&eacute;e.</p>
+        <p>Pourquoi cette m&eacute;thode fonctionne-t-elle si bien ? Le cerveau humain n'est pas con&ccedil;u pour maintenir une concentration intense sur de longues p&eacute;riodes. Les sessions de 25 minutes cr&eacute;ent un sentiment d'urgence qui combat la procrastination, tout en &eacute;vitant la fatigue mentale. Des &eacute;tudes en neurosciences montrent que les pauses r&eacute;guli&egrave;res am&eacute;liorent la r&eacute;tention d'information de 30% et r&eacute;duisent le stress li&eacute; au travail.</p>
+        <p>Pour tirer le meilleur parti du Pomodoro, il est essentiel d'utiliser un timer d&eacute;di&eacute; plut&ocirc;t qu'un simple chronom&egrave;tre. <a href="index.html"><strong>Le Focus Timer de FlowState</strong></a> int&egrave;gre nativement la technique Pomodoro avec des sessions personnalisables de 25 ou 50 minutes, des notifications sonores, et un suivi automatique de vos sessions. De plus, chaque session compl&eacute;t&eacute;e vous rapporte de l'XP dans le <a href="landing.html#features">syst&egrave;me de gamification</a>, ajoutant une couche de motivation suppl&eacute;mentaire.</p>
+        <p>Conseils avanc&eacute;s : combinez le Pomodoro avec la m&eacute;thode Eisenhower pour prioriser vos t&acirc;ches, utilisez les <a href="index.html">sons ambiants de FlowState</a> pour cr&eacute;er un environnement propice &agrave; la concentration, et suivez vos progr&egrave;s via le heatmap de productivit&eacute; pour identifier vos heures les plus productives. La cl&eacute; est la r&eacute;gularit&eacute; : maintenez un streak quotidien pour maximiser votre productivit&eacute; sur le long terme.</p>
+      </div>
+      <a href="index.html" class="blog-card-link">Essayer le Focus Timer &rarr;</a>
+    </article>
+
+    <!-- Article 2: Concentration -->
+    <article class="blog-card fade-in" data-category="concentration" itemscope itemtype="https://schema.org/Article">
+      <meta itemprop="datePublished" content="2025-03-05">
+      <meta itemprop="author" content="FlowState">
+      <meta itemprop="image" content="https://flowstate.app/assets/og-image.png">
+      <span class="blog-card-tag">Concentration</span>
+      <h2 itemprop="headline"><a href="#concentration">10 astuces pour am&eacute;liorer sa concentration</a></h2>
+      <div class="blog-card-meta">
+        <span>Par FlowState</span>
+        <span>5 mars 2025</span>
+        <span>5 min de lecture</span>
+      </div>
+      <div class="blog-card-excerpt" itemprop="articleBody">
+        <p>La concentration est la comp&eacute;tence la plus pr&eacute;cieuse du XXIe si&egrave;cle. Dans un monde de distractions permanentes &mdash; notifications, r&eacute;seaux sociaux, emails &mdash; savoir se concentrer est devenu un v&eacute;ritable superpouvoir. Voici 10 astuces prouv&eacute;es scientifiquement pour booster votre focus.</p>
+        <p><strong>1. Bloquez les distractions num&eacute;riques.</strong> Mettez votre t&eacute;l&eacute;phone en mode avion pendant vos sessions de travail. <strong>2. Utilisez la technique Pomodoro</strong> avec un <a href="index.html">timer d&eacute;di&eacute; comme FlowState</a>. <strong>3. Cr&eacute;ez un environnement sonore optimal</strong> &mdash; le bruit blanc ou les sons de pluie am&eacute;liorent la concentration de 47% selon une &eacute;tude de l'universit&eacute; de Chicago. <strong>4. Hydratez-vous r&eacute;guli&egrave;rement</strong> &mdash; une d&eacute;shydratation de seulement 2% r&eacute;duit les performances cognitives. <strong>5. Pratiquez la m&eacute;ditation</strong> &mdash; m&ecirc;me 10 minutes par jour am&eacute;liorent la capacit&eacute; d'attention.</p>
+        <p><strong>6. Dormez suffisamment</strong> &mdash; 7 &agrave; 9 heures sont n&eacute;cessaires pour un cerveau performant. <strong>7. Faites de l'exercice r&eacute;guli&egrave;rement</strong> &mdash; 30 minutes de cardio augmentent le BDNF, un facteur cl&eacute; pour la m&eacute;moire. <strong>8. Planifiez vos t&acirc;ches avec un <a href="index.html">tableau Kanban</a></strong> pour r&eacute;duire la charge mentale. <strong>9. Utilisez la gamification</strong> comme syst&egrave;me de r&eacute;compense &mdash; le <a href="landing.html#features">syst&egrave;me XP et badges de FlowState</a> active les circuits dopaminergiques du cerveau. <strong>10. Suivez vos progr&egrave;s</strong> &mdash; les analytics et heatmaps vous aident &agrave; identifier vos patterns de productivit&eacute;.</p>
+        <p>L'outil id&eacute;al combine tous ces principes. <a href="landing.html"><strong>FlowState</strong></a> r&eacute;unit timer Pomodoro, sons ambiants, gestion de t&acirc;ches et gamification dans un seul dashboard, con&ccedil;u pour vous aider &agrave; entrer et rester dans l'&eacute;tat de flow.</p>
+      </div>
+      <a href="landing.html" class="blog-card-link">D&eacute;couvrir FlowState &rarr;</a>
+    </article>
+
+    <!-- Article 3: Gamification -->
+    <article class="blog-card fade-in" data-category="productivite" itemscope itemtype="https://schema.org/Article">
+      <meta itemprop="datePublished" content="2025-02-28">
+      <meta itemprop="author" content="FlowState">
+      <meta itemprop="image" content="https://flowstate.app/assets/og-image.png">
+      <span class="blog-card-tag">Productivit&eacute;</span>
+      <h2 itemprop="headline"><a href="#gamification">Gamification et productivit&eacute; : pourquoi &ccedil;a marche</a></h2>
+      <div class="blog-card-meta">
+        <span>Par FlowState</span>
+        <span>28 f&eacute;vrier 2025</span>
+        <span>4 min de lecture</span>
+      </div>
+      <div class="blog-card-excerpt" itemprop="articleBody">
+        <p>La gamification &mdash; l'application de m&eacute;canismes de jeu &agrave; des contextes non ludiques &mdash; est devenue une strat&eacute;gie incontournable pour booster la motivation et l'engagement. En mati&egrave;re de productivit&eacute;, elle transforme des t&acirc;ches r&eacute;p&eacute;titives en d&eacute;fis stimulants gr&acirc;ce aux points d'exp&eacute;rience (XP), badges, niveaux et classements.</p>
+        <p>Le secret de son efficacit&eacute; repose sur la neuroscience. Chaque fois que vous gagnez de l'XP ou d&eacute;bloquez un badge, votre cerveau lib&egrave;re de la dopamine &mdash; le neurotransmetteur de la r&eacute;compense. Ce m&eacute;canisme cr&eacute;e une boucle de r&eacute;troaction positive : action &rarr; r&eacute;compense &rarr; motivation &rarr; action. Des &eacute;tudes de l'universit&eacute; de Pennsylvanie montrent que la gamification augmente l'engagement de 48% et la compl&eacute;tion de t&acirc;ches de 36%.</p>
+        <p><a href="landing.html"><strong>FlowState</strong></a> a &eacute;t&eacute; con&ccedil;u autour de ce principe. Le <a href="landing.html#features">syst&egrave;me de gamification</a> attribue de l'XP pour chaque session de focus compl&eacute;t&eacute;e, chaque t&acirc;che termin&eacute;e et chaque note cr&eacute;&eacute;e. Avec 22 badges &agrave; d&eacute;bloquer, des d&eacute;fis quotidiens et un syst&egrave;me de streak avec multiplicateur, la productivit&eacute; devient litt&eacute;ralement addictive.</p>
+        <p>Les &eacute;l&eacute;ments cl&eacute;s d'une bonne gamification incluent : des objectifs clairs et atteignables, un feedback imm&eacute;diat, une progression visible, et un sentiment de ma&icirc;trise croissante. Le tableau de bord <a href="index.html">FlowState</a> affiche en permanence votre niveau, votre barre d'XP, vos badges et votre heatmap de productivit&eacute;, offrant tous ces &eacute;l&eacute;ments dans une interface &eacute;l&eacute;gante et motivante.</p>
+      </div>
+      <a href="login.html" class="blog-card-link">Commencer &agrave; gagner de l'XP &rarr;</a>
+    </article>
+
+    <!-- Article 4: Outils de gestion -->
+    <article class="blog-card fade-in" data-category="outils" itemscope itemtype="https://schema.org/Article">
+      <meta itemprop="datePublished" content="2025-02-20">
+      <meta itemprop="author" content="FlowState">
+      <meta itemprop="image" content="https://flowstate.app/assets/og-image.png">
+      <span class="blog-card-tag">Outils</span>
+      <h2 itemprop="headline"><a href="#outils">Les meilleurs outils de gestion de t&acirc;ches gratuits</a></h2>
+      <div class="blog-card-meta">
+        <span>Par FlowState</span>
+        <span>20 f&eacute;vrier 2025</span>
+        <span>5 min de lecture</span>
+      </div>
+      <div class="blog-card-excerpt" itemprop="articleBody">
+        <p>Choisir le bon outil de gestion de t&acirc;ches peut transformer votre productivit&eacute;. En 2025, le march&eacute; regorge d'options, mais toutes ne se valent pas. Voici notre comparatif des meilleurs outils gratuits, class&eacute;s par leur capacit&eacute; &agrave; vous garder dans le flow.</p>
+        <p><strong>1. FlowState (Notre choix #1)</strong> &mdash; Le seul outil qui combine <a href="index.html">gestion de t&acirc;ches Kanban</a>, <a href="index.html">timer Pomodoro</a>, notes, sons ambiants et gamification dans un seul dashboard. Totalement gratuit, fonctionne hors ligne gr&acirc;ce &agrave; sa technologie PWA, et vos donn&eacute;es restent priv&eacute;es (stockage local). <a href="landing.html#features">Id&eacute;al pour les &eacute;tudiants et d&eacute;veloppeurs</a>. <strong>2. Todoist</strong> &mdash; Excellent pour les listes de t&acirc;ches simples, avec une interface propre et des int&eacute;grations. Limit&eacute; &agrave; 5 projets en version gratuite. <strong>3. Trello</strong> &mdash; Le pionnier du Kanban en ligne, mais la version gratuite limite les power-ups et l'automatisation.</p>
+        <p><strong>4. Notion</strong> &mdash; Tr&egrave;s polyvalent mais complexe &agrave; configurer, avec un temps de chargement plus long. <strong>5. Google Tasks</strong> &mdash; Basique mais bien int&eacute;gr&eacute; &agrave; l'&eacute;cosyst&egrave;me Google. Manque de fonctionnalit&eacute;s avanc&eacute;es comme le Kanban ou le timer.</p>
+        <p>Ce qui distingue <a href="landing.html"><strong>FlowState</strong></a> des autres outils, c'est son approche holistique de la productivit&eacute;. Plut&ocirc;t que de jongler entre un timer, un gestionnaire de t&acirc;ches et une app de notes, tout est r&eacute;uni dans un seul endroit. Le syst&egrave;me de gamification ajoute une motivation que les autres outils ne proposent pas. Et avec le <a href="landing.html#pricing">plan gratuit g&eacute;n&eacute;reux</a>, il n'y a aucune raison de ne pas essayer.</p>
+      </div>
+      <a href="login.html" class="blog-card-link">Essayer FlowState gratuitement &rarr;</a>
+    </article>
+
+    <!-- Article 5: Environnement de travail -->
+    <article class="blog-card fade-in" data-category="concentration" itemscope itemtype="https://schema.org/Article">
+      <meta itemprop="datePublished" content="2025-02-15">
+      <meta itemprop="author" content="FlowState">
+      <meta itemprop="image" content="https://flowstate.app/assets/og-image.png">
+      <span class="blog-card-tag">Concentration</span>
+      <h2 itemprop="headline"><a href="#environnement">Comment cr&eacute;er un environnement de travail optimal</a></h2>
+      <div class="blog-card-meta">
+        <span>Par FlowState</span>
+        <span>15 f&eacute;vrier 2025</span>
+        <span>4 min de lecture</span>
+      </div>
+      <div class="blog-card-excerpt" itemprop="articleBody">
+        <p>Votre environnement de travail a un impact direct sur votre capacit&eacute; de concentration. Des recherches en psychologie environnementale montrent que l'am&eacute;nagement de l'espace, l'&eacute;clairage, la temp&eacute;rature et surtout l'ambiance sonore influencent consid&eacute;rablement la productivit&eacute;.</p>
+        <p><strong>L'ambiance sonore : le facteur le plus sous-estim&eacute;.</strong> Le silence total n'est pas toujours id&eacute;al. Des recherches publi&eacute;es dans le Journal of Consumer Research r&eacute;v&egrave;lent qu'un niveau de bruit ambiant mod&eacute;r&eacute; (environ 70 d&eacute;cibels, soit le bruit d'un caf&eacute;) stimule la cr&eacute;ativit&eacute; et la concentration. C'est exactement ce que proposent les <a href="index.html">sons ambiants de FlowState</a> : pluie douce, ambiance de caf&eacute;, for&ecirc;t, lo-fi beats &mdash; chaque son est calibr&eacute; pour favoriser l'&eacute;tat de flow.</p>
+        <p><strong>Organisez votre espace num&eacute;rique.</strong> Un bureau rang&eacute; est important, mais votre espace num&eacute;rique l'est encore plus. Fermez les onglets inutiles, utilisez un <a href="index.html">tableau Kanban</a> pour visualiser vos t&acirc;ches, et &eacute;vitez le multit&acirc;che. Le <a href="index.html">dashboard FlowState</a> centralise tout &mdash; timer, t&acirc;ches, notes et sons &mdash; pour &eacute;liminer le besoin de basculer entre plusieurs applications.</p>
+        <p><strong>&Eacute;clairage et ergonomie.</strong> Privil&eacute;giez la lumi&egrave;re naturelle, maintenez une temp&eacute;rature entre 20 et 22&deg;C, et investissez dans un bon si&egrave;ge. Combinez ces &eacute;l&eacute;ments physiques avec le <a href="landing.html">th&egrave;me sombre de FlowState</a>, con&ccedil;u pour r&eacute;duire la fatigue oculaire lors des longues sessions de travail, et vous aurez cr&eacute;&eacute; l'environnement parfait pour atteindre et maintenir l'&eacute;tat de flow.</p>
+      </div>
+      <a href="index.html" class="blog-card-link">D&eacute;couvrir les sons ambiants &rarr;</a>
+    </article>
+
+  </div>
+
+  <!-- FAQ Section -->
+  <section class="blog-faq">
+    <h2 class="fade-in">Questions fr&eacute;quentes sur la <span class="text-gradient">productivit&eacute;</span></h2>
+    <div class="faq-item fade-in">
+      <div class="faq-question">Combien de temps faut-il pour am&eacute;liorer sa productivit&eacute; ? <span>+</span></div>
+      <div class="faq-answer">Des &eacute;tudes montrent qu'il faut en moyenne 21 jours pour ancrer une nouvelle habitude. En utilisant quotidiennement un outil comme <a href="landing.html">FlowState</a> avec la technique Pomodoro, vous pouvez constater des am&eacute;liorations significatives d&egrave;s la premi&egrave;re semaine. Le syst&egrave;me de streak et de gamification vous aide &agrave; maintenir la r&eacute;gularit&eacute; n&eacute;cessaire.</div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-question">Quelle est la meilleure dur&eacute;e pour une session de focus ? <span>+</span></div>
+      <div class="faq-answer">La dur&eacute;e optimale d&eacute;pend de chaque individu. La technique Pomodoro classique recommande 25 minutes, mais certaines personnes pr&eacute;f&egrave;rent des sessions de 50 minutes. <a href="index.html">Le timer FlowState</a> permet de choisir entre les deux. L'important est d'exp&eacute;rimenter et de suivre vos analytics pour trouver votre dur&eacute;e id&eacute;ale.</div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-question">La gamification est-elle vraiment efficace pour la productivit&eacute; ? <span>+</span></div>
+      <div class="faq-answer">Oui, de nombreuses &eacute;tudes le confirment. La gamification active les circuits de r&eacute;compense du cerveau (dopamine) et augmente l'engagement de 48% en moyenne. Le <a href="landing.html#features">syst&egrave;me XP, badges et niveaux de FlowState</a> exploite ces m&eacute;canismes pour rendre la productivit&eacute; intrins&egrave;quement motivante.</div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="container cta-inner fade-in">
+      <h2 class="cta-title">Pr&ecirc;t &agrave; booster ta productivit&eacute; ?</h2>
+      <p class="cta-subtitle">Rejoins des centaines d'utilisateurs qui utilisent FlowState chaque jour pour rester focus.</p>
+      <a href="login.html" class="btn btn-primary btn-lg">
+        Commencer gratuitement
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="landing.html" class="nav-logo">
+          <span class="logo-icon">&#9670;</span>
+          <span class="logo-text">FlowState</span>
+        </a>
+        <p class="footer-tagline">La productivit&eacute;, gamifi&eacute;e.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Produit</h4>
+          <a href="landing.html#features">Features</a>
+          <a href="landing.html#pricing">Pricing</a>
+          <a href="index.html">Dashboard</a>
+          <a href="blog.html">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>L&eacute;gal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">CGU</a>
+        </div>
+        <div class="footer-col">
+          <h4>Social</h4>
+          <a href="#">Twitter / X</a>
+          <a href="#">GitHub</a>
+          <a href="#">Discord</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2025 FlowState. Tous droits r&eacute;serv&eacute;s.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      /* Fade-in animations */
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      /* Mobile nav toggle */
+      const navToggle = document.getElementById('navToggle');
+      const navMobile = document.getElementById('navMobile');
+      if (navToggle && navMobile) {
+        navToggle.addEventListener('click', () => {
+          navToggle.classList.toggle('active');
+          navMobile.classList.toggle('open');
+        });
+        navMobile.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navToggle.classList.remove('active');
+            navMobile.classList.remove('open');
+          });
+        });
+      }
+
+      /* Navbar scroll */
+      const nav = document.querySelector('.landing-nav');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+      /* Blog filter buttons */
+      const filterBtns = document.querySelectorAll('.blog-filter-btn');
+      const cards = document.querySelectorAll('.blog-card');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          cards.forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "name": "Blog FlowState",
+        "url": "https://flowstate.app/blog",
+        "description": "Articles sur la productivit&eacute;, la concentration, la gamification et les outils de gestion de t&acirc;ches.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "FlowState",
+          "url": "https://flowstate.app",
+          "logo": "https://flowstate.app/assets/icon-512.png"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "La technique Pomodoro : Guide complet 2025",
+        "datePublished": "2025-03-10",
+        "dateModified": "2025-03-10",
+        "author": {"@type": "Organization", "name": "FlowState"},
+        "publisher": {"@type": "Organization", "name": "FlowState", "logo": {"@type": "ImageObject", "url": "https://flowstate.app/assets/icon-512.png"}},
+        "image": "https://flowstate.app/assets/og-image.png",
+        "mainEntityOfPage": "https://flowstate.app/blog#pomodoro",
+        "description": "Guide complet de la technique Pomodoro pour booster sa productivit&eacute; en 2025. Timer, sessions, pauses et conseils avanc&eacute;s."
+      },
+      {
+        "@type": "Article",
+        "headline": "10 astuces pour am&eacute;liorer sa concentration",
+        "datePublished": "2025-03-05",
+        "dateModified": "2025-03-05",
+        "author": {"@type": "Organization", "name": "FlowState"},
+        "publisher": {"@type": "Organization", "name": "FlowState", "logo": {"@type": "ImageObject", "url": "https://flowstate.app/assets/icon-512.png"}},
+        "image": "https://flowstate.app/assets/og-image.png",
+        "mainEntityOfPage": "https://flowstate.app/blog#concentration",
+        "description": "10 astuces scientifiquement prouv&eacute;es pour am&eacute;liorer votre concentration et votre focus au quotidien."
+      },
+      {
+        "@type": "Article",
+        "headline": "Gamification et productivit&eacute; : pourquoi &ccedil;a marche",
+        "datePublished": "2025-02-28",
+        "dateModified": "2025-02-28",
+        "author": {"@type": "Organization", "name": "FlowState"},
+        "publisher": {"@type": "Organization", "name": "FlowState", "logo": {"@type": "ImageObject", "url": "https://flowstate.app/assets/icon-512.png"}},
+        "image": "https://flowstate.app/assets/og-image.png",
+        "mainEntityOfPage": "https://flowstate.app/blog#gamification",
+        "description": "D&eacute;couvrez comment la gamification avec XP, badges et niveaux transforme la productivit&eacute; en exp&eacute;rience motivante."
+      },
+      {
+        "@type": "Article",
+        "headline": "Les meilleurs outils de gestion de t&acirc;ches gratuits",
+        "datePublished": "2025-02-20",
+        "dateModified": "2025-02-20",
+        "author": {"@type": "Organization", "name": "FlowState"},
+        "publisher": {"@type": "Organization", "name": "FlowState", "logo": {"@type": "ImageObject", "url": "https://flowstate.app/assets/icon-512.png"}},
+        "image": "https://flowstate.app/assets/og-image.png",
+        "mainEntityOfPage": "https://flowstate.app/blog#outils",
+        "description": "Comparatif 2025 des meilleurs outils gratuits de gestion de t&acirc;ches : FlowState, Todoist, Trello, Notion et Google Tasks."
+      },
+      {
+        "@type": "Article",
+        "headline": "Comment cr&eacute;er un environnement de travail optimal",
+        "datePublished": "2025-02-15",
+        "dateModified": "2025-02-15",
+        "author": {"@type": "Organization", "name": "FlowState"},
+        "publisher": {"@type": "Organization", "name": "FlowState", "logo": {"@type": "ImageObject", "url": "https://flowstate.app/assets/icon-512.png"}},
+        "image": "https://flowstate.app/assets/og-image.png",
+        "mainEntityOfPage": "https://flowstate.app/blog#environnement",
+        "description": "Conseils pour cr&eacute;er l'environnement de travail parfait : sons ambiants, &eacute;clairage, ergonomie et espace num&eacute;rique."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Combien de temps faut-il pour am&eacute;liorer sa productivit&eacute; ?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Des &eacute;tudes montrent qu'il faut en moyenne 21 jours pour ancrer une nouvelle habitude. En utilisant quotidiennement un outil comme FlowState avec la technique Pomodoro, vous pouvez constater des am&eacute;liorations significatives d&egrave;s la premi&egrave;re semaine."}
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle est la meilleure dur&eacute;e pour une session de focus ?",
+            "acceptedAnswer": {"@type": "Answer", "text": "La dur&eacute;e optimale d&eacute;pend de chaque individu. La technique Pomodoro classique recommande 25 minutes, mais certaines personnes pr&eacute;f&egrave;rent des sessions de 50 minutes. L'important est d'exp&eacute;rimenter et de suivre vos analytics."}
+          },
+          {
+            "@type": "Question",
+            "name": "La gamification est-elle vraiment efficace pour la productivit&eacute; ?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Oui, de nombreuses &eacute;tudes le confirment. La gamification active les circuits de r&eacute;compense du cerveau et augmente l'engagement de 48% en moyenne."}
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://flowstate.app/"},
+          {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://flowstate.app/blog"}
+        ]
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
