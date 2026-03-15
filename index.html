@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FlowState — Dashboard de productivité ultime">
+  <title>FlowState — Productivity Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/gamification.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0a0a0f">
+</head>
+<body>
+  <!-- Animated background -->
+  <div class="bg-canvas" id="bgCanvas">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Top bar -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-left">
+      <div class="logo">
+        <span class="logo-icon">◆</span>
+        <span class="logo-text">FlowState</span>
+      </div>
+    </div>
+    <div class="topbar-center">
+      <nav class="nav-pills" id="navPills">
+        <button class="nav-pill active" data-view="dashboard">Dashboard</button>
+        <button class="nav-pill" data-view="focus">Focus</button>
+        <button class="nav-pill" data-view="tasks">Tasks</button>
+        <button class="nav-pill" data-view="notes">Notes</button>
+        <button class="nav-pill" data-view="links">Links</button>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <button class="icon-btn" id="ambientToggle" title="Ambient Sounds">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      </button>
+      <button class="icon-btn" id="themeToggle" title="Toggle Theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+      <button class="icon-btn" id="fullscreenToggle" title="Fullscreen">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ==================== DASHBOARD VIEW ==================== -->
+    <section class="view active" id="view-dashboard">
+
+      <!-- XP Bar -->
+      <div class="xp-bar-container" id="xpBar">
+        <div class="xp-avatar" id="xpAvatar">
+          <span id="xpRankIcon">🌱</span>
+          <span class="xp-level-badge" id="xpLevelBadge">1</span>
+        </div>
+        <div class="xp-info">
+          <div class="xp-info-top">
+            <span class="xp-rank">
+              <span id="xpRankTitle" class="xp-rank-title">Débutant</span>
+            </span>
+            <span class="xp-amount"><span id="xpCurrent">0</span> / <span id="xpNext">100</span> XP</span>
+          </div>
+          <div class="xp-progress-bar">
+            <div class="xp-progress-fill" id="xpProgressFill" style="width: 0%"></div>
+          </div>
+          <div class="xp-info-bottom">
+            <span class="xp-level-text">Niveau <span id="xpLevel">1</span></span>
+            <span class="xp-multiplier" id="xpMultiplier">x1.0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <!-- Clock Widget -->
+        <div class="card card-clock" id="clockCard">
+          <div class="card-glow"></div>
+          <div class="clock-time" id="clockTime">00:00</div>
+          <div class="clock-date" id="clockDate">Chargement...</div>
+          <div class="clock-greeting" id="clockGreeting"></div>
+        </div>
+
+        <!-- Mini Timer -->
+        <div class="card card-mini-timer" id="miniTimerCard">
+          <div class="card-glow"></div>
+          <div class="card-header">
+            <h3>Focus Timer</h3>
+            <span class="badge" id="sessionCount">0 sessions</span>
+          </div>
+          <div class="mini-timer-display">
+            <svg class="timer-ring" viewBox="0 0 120 120">
+              <circle class="timer-ring-bg" cx="60" cy="60" r="52"/>
+              <circle class="timer-ring-progress" cx="60" cy="60" r="52" id="miniTimerRing"/>
+            </svg>
+            <span class="mini-timer-text" id="miniTimerText">25:00</span>
+          </div>
+          <div class="mini-timer-controls">
+            <button class="btn btn-sm btn-ghost" id="miniTimerReset">Reset</button>
+            <button class="btn btn-sm btn-primary" id="miniTimerToggle">Start</button>
+          </div>
+        </div>
+
+        <!-- Stats Widget -->
+        <div class="card card-stats">
+          <div class="card-glow"></div>
+          <div class="card-header"><h3>Aujourd'hui</h3></div>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-value" id="statFocusTime">0h</span>
+              <span class="stat-label">Focus</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="statTasksDone">0</span>
+              <span class="stat-label">Tasks done</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="statStreak">0</span>
+              <span class="stat-label">Streak 🔥</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="statNotes">0</span>
+              <span class="stat-label">Notes</span>
+            </div>
+          </div>
+          <div class="stats-chart" id="weekChart"></div>
+        </div>
+
+        <!-- Quick Tasks -->
+        <div class="card card-quick-tasks">
+          <div class="card-glow"></div>
+          <div class="card-header">
+            <h3>Tâches prioritaires</h3>
+            <button class="btn btn-sm btn-ghost" onclick="FlowState.views.tasks.show()">Voir tout →</button>
+          </div>
+          <ul class="quick-task-list" id="quickTaskList"></ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="card card-quick-links">
+          <div class="card-glow"></div>
+          <div class="card-header">
+            <h3>Accès rapide</h3>
+            <button class="btn btn-sm btn-ghost" onclick="FlowState.views.links.show()">Voir tout →</button>
+          </div>
+          <div class="quick-links-grid" id="quickLinksGrid"></div>
+        </div>
+
+        <!-- Daily Challenges -->
+        <div class="card card-challenges">
+          <div class="card-glow"></div>
+          <div class="card-header">
+            <h3>Défis du jour</h3>
+            <span class="badge" id="challengeProgress">0/3</span>
+          </div>
+          <div class="challenge-list" id="challengeList"></div>
+        </div>
+
+        <!-- Ambient Player -->
+        <div class="card card-ambient" id="ambientCard">
+          <div class="card-glow"></div>
+          <div class="card-header"><h3>Ambiance</h3></div>
+          <div class="ambient-grid" id="ambientGrid"></div>
+          <div class="ambient-volume">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            <input type="range" min="0" max="100" value="50" class="slider" id="ambientVolume">
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="card card-badges">
+          <div class="card-glow"></div>
+          <div class="card-header">
+            <h3>Badges</h3>
+            <span class="badge" id="badgeCount">0 / 0</span>
+          </div>
+          <div class="badges-grid" id="badgesGrid"></div>
+        </div>
+
+        <!-- Heatmap -->
+        <div class="card card-heatmap">
+          <div class="card-glow"></div>
+          <div class="card-header">
+            <h3>Activité (12 semaines)</h3>
+          </div>
+          <div class="heatmap-container">
+            <div class="heatmap-grid" id="heatmapGrid"></div>
+          </div>
+          <div class="heatmap-legend">
+            <span>Moins</span>
+            <div class="heatmap-legend-cell" data-level="0" style="background:var(--border-color);opacity:0.3"></div>
+            <div class="heatmap-legend-cell" data-level="1" style="background:#7c3aed;opacity:0.3"></div>
+            <div class="heatmap-legend-cell" data-level="2" style="background:#7c3aed;opacity:0.5"></div>
+            <div class="heatmap-legend-cell" data-level="3" style="background:#7c3aed;opacity:0.75"></div>
+            <div class="heatmap-legend-cell" data-level="4" style="background:#7c3aed;opacity:1"></div>
+            <span>Plus</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== FOCUS VIEW ==================== -->
+    <section class="view" id="view-focus">
+      <div class="focus-container">
+        <div class="focus-card">
+          <div class="card-glow"></div>
+          <h2 class="focus-title">Deep Focus Mode</h2>
+          <div class="focus-timer-wrapper">
+            <svg class="focus-ring" viewBox="0 0 300 300">
+              <defs>
+                <linearGradient id="timerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#a78bfa"/>
+                  <stop offset="100%" style="stop-color:#6366f1"/>
+                </linearGradient>
+              </defs>
+              <circle class="focus-ring-bg" cx="150" cy="150" r="130"/>
+              <circle class="focus-ring-progress" cx="150" cy="150" r="130" id="focusRing"/>
+            </svg>
+            <div class="focus-time-display">
+              <span id="focusTimeDisplay">25:00</span>
+              <span class="focus-label" id="focusLabel">Prêt</span>
+            </div>
+          </div>
+          <div class="focus-presets">
+            <button class="preset-btn active" data-minutes="25">25 min</button>
+            <button class="preset-btn" data-minutes="45">45 min</button>
+            <button class="preset-btn" data-minutes="60">60 min</button>
+            <button class="preset-btn" data-minutes="90">90 min</button>
+          </div>
+          <div class="focus-controls">
+            <button class="btn btn-lg btn-ghost" id="focusReset">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            </button>
+            <button class="btn btn-lg btn-primary btn-glow" id="focusToggle">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Démarrer</span>
+            </button>
+            <button class="btn btn-lg btn-ghost" id="focusSkip">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+            </button>
+          </div>
+          <div class="focus-session-info">
+            <span id="focusSessionInfo">Session 1 / 4</span>
+            <div class="session-dots" id="sessionDots">
+              <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TASKS VIEW ==================== -->
+    <section class="view" id="view-tasks">
+      <div class="tasks-container">
+        <div class="tasks-header">
+          <h2>Gestion des tâches</h2>
+          <div class="tasks-actions">
+            <div class="filter-pills" id="taskFilters">
+              <button class="filter-pill active" data-filter="all">Toutes</button>
+              <button class="filter-pill" data-filter="high">Urgent</button>
+              <button class="filter-pill" data-filter="medium">Normal</button>
+              <button class="filter-pill" data-filter="low">Faible</button>
+              <button class="filter-pill" data-filter="done">Terminé</button>
+            </div>
+            <button class="btn btn-primary" id="addTaskBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Nouvelle tâche
+            </button>
+          </div>
+        </div>
+        <div class="tasks-columns" id="tasksColumns">
+          <div class="task-column" data-status="todo">
+            <div class="column-header"><span class="column-dot dot-todo"></span> À faire <span class="column-count" id="countTodo">0</span></div>
+            <div class="task-list" id="listTodo"></div>
+          </div>
+          <div class="task-column" data-status="progress">
+            <div class="column-header"><span class="column-dot dot-progress"></span> En cours <span class="column-count" id="countProgress">0</span></div>
+            <div class="task-list" id="listProgress"></div>
+          </div>
+          <div class="task-column" data-status="done">
+            <div class="column-header"><span class="column-dot dot-done"></span> Terminé <span class="column-count" id="countDone">0</span></div>
+            <div class="task-list" id="listDone"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task Modal -->
+      <div class="modal-overlay" id="taskModal">
+        <div class="modal">
+          <div class="modal-header">
+            <h3 id="taskModalTitle">Nouvelle tâche</h3>
+            <button class="icon-btn" id="closeTaskModal">✕</button>
+          </div>
+          <form id="taskForm">
+            <div class="form-group">
+              <label>Titre</label>
+              <input type="text" id="taskTitle" placeholder="Qu'est-ce qui doit être fait ?" required>
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea id="taskDesc" placeholder="Détails optionnels..." rows="3"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Priorité</label>
+                <select id="taskPriority">
+                  <option value="low">Faible</option>
+                  <option value="medium" selected>Normal</option>
+                  <option value="high">Urgent</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Catégorie</label>
+                <input type="text" id="taskCategory" placeholder="ex: TP, Projet...">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-ghost" id="cancelTask">Annuler</button>
+              <button type="submit" class="btn btn-primary">Sauvegarder</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== NOTES VIEW ==================== -->
+    <section class="view" id="view-notes">
+      <div class="notes-container">
+        <div class="notes-sidebar">
+          <div class="notes-sidebar-header">
+            <h3>Notes</h3>
+            <button class="icon-btn" id="addNoteBtn" title="Nouvelle note">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <input type="text" class="notes-search" id="noteSearch" placeholder="Rechercher...">
+          <div class="notes-list" id="notesList"></div>
+        </div>
+        <div class="notes-editor">
+          <div class="notes-editor-header" id="noteEditorHeader">
+            <input type="text" class="note-title-input" id="noteTitleInput" placeholder="Titre de la note">
+            <div class="note-meta" id="noteMeta"></div>
+          </div>
+          <div class="notes-toolbar">
+            <button class="toolbar-btn" data-cmd="bold" title="Gras"><b>B</b></button>
+            <button class="toolbar-btn" data-cmd="italic" title="Italique"><i>I</i></button>
+            <button class="toolbar-btn" data-cmd="underline" title="Souligné"><u>U</u></button>
+            <span class="toolbar-sep"></span>
+            <button class="toolbar-btn" data-cmd="insertUnorderedList" title="Liste">☰</button>
+            <button class="toolbar-btn" data-cmd="insertOrderedList" title="Liste numérotée">1.</button>
+            <span class="toolbar-sep"></span>
+            <button class="toolbar-btn" data-cmd="formatBlock:h2" title="Titre">H</button>
+            <button class="toolbar-btn" data-cmd="formatBlock:blockquote" title="Citation">❝</button>
+            <button class="toolbar-btn" data-cmd="code" title="Code">{ }</button>
+          </div>
+          <div class="note-content" id="noteContent" contenteditable="true" data-placeholder="Commencez à écrire..."></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== LINKS VIEW ==================== -->
+    <section class="view" id="view-links">
+      <div class="links-container">
+        <div class="links-header">
+          <h2>Liens & Ressources</h2>
+          <button class="btn btn-primary" id="addLinkBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Ajouter un lien
+          </button>
+        </div>
+        <div class="links-categories" id="linksCategories"></div>
+        <div class="links-grid" id="linksGrid"></div>
+      </div>
+
+      <!-- Link Modal -->
+      <div class="modal-overlay" id="linkModal">
+        <div class="modal">
+          <div class="modal-header">
+            <h3>Ajouter un lien</h3>
+            <button class="icon-btn" id="closeLinkModal">✕</button>
+          </div>
+          <form id="linkForm">
+            <div class="form-group">
+              <label>Titre</label>
+              <input type="text" id="linkTitle" placeholder="Nom du site" required>
+            </div>
+            <div class="form-group">
+              <label>URL</label>
+              <input type="url" id="linkUrl" placeholder="https://..." required>
+            </div>
+            <div class="form-group">
+              <label>Catégorie</label>
+              <input type="text" id="linkCategory" placeholder="ex: Dev, Design, Tools...">
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-ghost" id="cancelLink">Annuler</button>
+              <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Dynamic overlays (injected by JS) -->
+  <div id="dynamicOverlays"></div>
+
+  <!-- Confetti container -->
+  <div class="confetti-container" id="confettiContainer"></div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Command palette -->
+  <div class="modal-overlay" id="commandPalette">
+    <div class="command-palette">
+      <input type="text" id="commandInput" placeholder="Tapez une commande... (ex: timer, task, note)">
+      <div class="command-list" id="commandList"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

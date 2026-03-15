@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FlowState — Transforme ton focus en superpouvoir. Dashboard de productivité gamifié avec Pomodoro, Kanban, Notes et Sons Ambiants.">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>FlowState — Productivité Gamifiée</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <!-- ── Animated Background ── -->
+  <div class="bg-canvas">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- ── Navbar ── -->
+  <nav class="landing-nav">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">◆</span>
+        <span class="logo-text">FlowState</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+      </ul>
+      <a href="index.html" class="btn btn-primary btn-sm">Lancer l'app</a>
+      <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="nav-mobile" id="navMobile">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#privacy">Privacy</a>
+      <a href="index.html" class="btn btn-primary btn-sm" style="margin-top:0.5rem;">Lancer l'app</a>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-badge fade-in">
+        <span class="badge-dot"></span>
+        Nouveau — Gamification XP & Niveaux
+      </div>
+      <h1 class="hero-title fade-in">
+        Transforme ton focus<br>en <span class="text-gradient">superpouvoir</span>
+      </h1>
+      <p class="hero-subtitle fade-in">
+        Le dashboard de productivité qui combine Pomodoro, Kanban, Notes et Sons Ambiants — le tout gamifié avec XP, badges et niveaux pour rester motivé.
+      </p>
+      <div class="hero-cta fade-in">
+        <a href="index.html" class="btn btn-primary btn-lg">
+          Commencer gratuitement
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#pricing" class="btn btn-ghost btn-lg">Voir les plans</a>
+      </div>
+      <div class="hero-visual fade-in">
+        <div class="hero-mockup">
+          <div class="mockup-bar">
+            <span class="mockup-dot" style="background:#ef4444;"></span>
+            <span class="mockup-dot" style="background:#f59e0b;"></span>
+            <span class="mockup-dot" style="background:#22c55e;"></span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-sidebar">
+              <div class="mockup-line w60"></div>
+              <div class="mockup-line w80"></div>
+              <div class="mockup-line w50"></div>
+              <div class="mockup-line w70"></div>
+            </div>
+            <div class="mockup-main">
+              <div class="mockup-card-row">
+                <div class="mockup-mini-card accent"></div>
+                <div class="mockup-mini-card"></div>
+                <div class="mockup-mini-card"></div>
+              </div>
+              <div class="mockup-timer-circle">
+                <span>25:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Stats Band ── -->
+  <section class="stats-band">
+    <div class="container stats-inner">
+      <div class="stat fade-in">
+        <span class="stat-number" data-count="10000">10 000+</span>
+        <span class="stat-label">Sessions focus</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat fade-in">
+        <span class="stat-number" data-count="500">500+</span>
+        <span class="stat-label">Utilisateurs</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat fade-in">
+        <span class="stat-number">98%</span>
+        <span class="stat-label">Satisfaction</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ── -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Features</span>
+        <h2 class="section-title">Tout ce qu'il faut pour rester <span class="text-gradient">dans le flow</span></h2>
+        <p class="section-subtitle">Six outils puissants dans un seul dashboard, conçus pour maximiser ta concentration.</p>
+      </div>
+      <div class="features-grid">
+        <!-- Focus Timer -->
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 class="feature-title">Focus Timer</h3>
+          <p class="feature-desc">Pomodoro intelligent avec sessions de 25/50 minutes, pauses automatiques et suivi du temps de concentration.</p>
+        </div>
+        <!-- Kanban Tasks -->
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+          </div>
+          <h3 class="feature-title">Kanban Tasks</h3>
+          <p class="feature-desc">Organise tes tâches en colonnes drag & drop. Priorités, tags et deadlines pour ne rien oublier.</p>
+        </div>
+        <!-- Notes -->
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3 class="feature-title">Notes</h3>
+          <p class="feature-desc">Éditeur Markdown minimaliste pour capturer idées et notes rapidement, avec sauvegarde locale instantanée.</p>
+        </div>
+        <!-- Ambient Sounds -->
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <h3 class="feature-title">Sons Ambiants</h3>
+          <p class="feature-desc">Pluie, café, forêt, lo-fi — mixe tes ambiances pour créer l'environnement sonore parfait.</p>
+        </div>
+        <!-- Gamification -->
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3 class="feature-title">Gamification</h3>
+          <p class="feature-desc">Gagne de l'XP à chaque session, débloque des badges, monte en niveau et maintiens ton streak quotidien.</p>
+        </div>
+        <!-- Analytics -->
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          </div>
+          <h3 class="feature-title">Analytics</h3>
+          <p class="feature-desc">Heatmap de productivité, graphiques de progression et insights pour comprendre tes habitudes de travail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How It Works ── -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Comment ça marche</span>
+        <h2 class="section-title">Trois étapes vers le <span class="text-gradient">flow parfait</span></h2>
+      </div>
+      <div class="steps">
+        <div class="steps-line"></div>
+        <div class="step fade-in">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Lance une session</h3>
+          <p class="step-desc">Choisis ta durée, tes sons ambiants et démarre ton timer Pomodoro en un clic.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Gagne de l'XP</h3>
+          <p class="step-desc">Chaque minute de focus te rapporte de l'XP. Complète des tâches pour des bonus.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Monte en niveau</h3>
+          <p class="step-desc">Débloque des badges, gravis les niveaux et maintiens ton streak pour un multiplicateur XP.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Gamification Showcase ── -->
+  <section class="gamification-showcase">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Gamification</span>
+        <h2 class="section-title">La productivité devient <span class="text-gradient">addictive</span></h2>
+      </div>
+      <div class="gamification-grid fade-in">
+        <!-- XP Bar -->
+        <div class="gam-card gam-xp">
+          <div class="gam-card-header">
+            <span class="gam-label">Niveau 12</span>
+            <span class="gam-value">2 450 / 3 000 XP</span>
+          </div>
+          <div class="gam-xp-bar">
+            <div class="gam-xp-fill" style="width:82%"></div>
+          </div>
+          <p class="gam-hint">+150 XP pour le prochain niveau</p>
+        </div>
+        <!-- Badges -->
+        <div class="gam-card gam-badges">
+          <span class="gam-label">Badges débloqués</span>
+          <div class="gam-badge-row">
+            <div class="gam-badge" title="Premier focus">🎯</div>
+            <div class="gam-badge" title="Streak 7 jours">🔥</div>
+            <div class="gam-badge" title="100 sessions">💎</div>
+            <div class="gam-badge" title="Night Owl">🦉</div>
+            <div class="gam-badge locked" title="Verrouillé">🔒</div>
+            <div class="gam-badge locked" title="Verrouillé">🔒</div>
+          </div>
+        </div>
+        <!-- Streak -->
+        <div class="gam-card gam-streak">
+          <div class="gam-streak-number">14</div>
+          <span class="gam-label">Jours de streak</span>
+          <div class="gam-multiplier">Multiplicateur ×2.4</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ── -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Pricing</span>
+        <h2 class="section-title">Un plan pour chaque <span class="text-gradient">ambition</span></h2>
+        <p class="section-subtitle">Commence gratuitement, passe Pro quand tu veux.</p>
+      </div>
+      <div class="pricing-grid">
+        <!-- Free -->
+        <div class="pricing-card fade-in">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Free</h3>
+            <div class="pricing-price">
+              <span class="price-amount">0€</span>
+              <span class="price-period">pour toujours</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Focus Timer (Pomodoro)
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Kanban Tasks (50 tâches)
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Notes (10 notes)
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              3 Sons Ambiants
+            </li>
+            <li class="excluded">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Gamification avancée
+            </li>
+            <li class="excluded">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Analytics & Heatmap
+            </li>
+          </ul>
+          <button class="btn btn-ghost btn-block" data-stripe-plan="free">Commencer gratuitement</button>
+        </div>
+        <!-- Pro -->
+        <div class="pricing-card popular fade-in">
+          <div class="popular-badge">Populaire</div>
+          <div class="pricing-header">
+            <h3 class="pricing-name">Pro</h3>
+            <div class="pricing-price">
+              <span class="price-amount">4.99€</span>
+              <span class="price-period">/mois</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Tout du plan Free
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Tâches & Notes illimitées
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Tous les Sons Ambiants
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Gamification complète (XP, Badges, Niveaux)
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Analytics & Heatmap
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Thèmes exclusifs
+            </li>
+          </ul>
+          <button class="btn btn-primary btn-block" data-stripe-plan="pro">Passer à Pro</button>
+        </div>
+        <!-- Team -->
+        <div class="pricing-card fade-in">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Team</h3>
+            <div class="pricing-price">
+              <span class="price-amount">9.99€</span>
+              <span class="price-period">/mois/utilisateur</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Tout du plan Pro
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Kanban collaboratif
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Classement d'équipe
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Analytics d'équipe
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Admin & permissions
+            </li>
+            <li class="included">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Support prioritaire
+            </li>
+          </ul>
+          <button class="btn btn-ghost btn-block" data-stripe-plan="team">Contacter l'équipe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Testimonials ── -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Témoignages</span>
+        <h2 class="section-title">Ils sont dans le <span class="text-gradient">flow</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"FlowState a complètement changé ma façon de réviser. Le système d'XP me motive à rester concentré et j'ai doublé mon temps de travail quotidien."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">L</div>
+            <div>
+              <div class="testimonial-name">Lucas M.</div>
+              <div class="testimonial-role">Étudiant en informatique</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Le combo Pomodoro + sons ambiants est parfait pour coder. Les analytics m'ont montré que je suis 3x plus productif le matin — game changer."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div>
+              <div class="testimonial-name">Sarah K.</div>
+              <div class="testimonial-role">Développeuse fullstack</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"On utilise le plan Team pour nos sprints. Le classement d'équipe a créé une compétition saine et notre vélocité a augmenté de 40%."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">A</div>
+            <div>
+              <div class="testimonial-name">Antoine R.</div>
+              <div class="testimonial-role">Lead Dev, startup SaaS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Banner ── -->
+  <section class="cta-banner">
+    <div class="container cta-inner fade-in">
+      <h2 class="cta-title">Prêt à booster ta productivité ?</h2>
+      <p class="cta-subtitle">Rejoins des centaines d'étudiants et développeurs qui utilisent FlowState chaque jour.</p>
+      <a href="index.html" class="btn btn-primary btn-lg">
+        Commencer maintenant
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="landing-footer" id="privacy">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <span class="logo-icon">◆</span>
+          <span class="logo-text">FlowState</span>
+        </a>
+        <p class="footer-tagline">La productivité, gamifiée.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Produit</h4>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="index.html">Dashboard</a>
+        </div>
+        <div class="footer-col">
+          <h4>Légal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">CGU</a>
+          <a href="#">Mentions légales</a>
+        </div>
+        <div class="footer-col">
+          <h4>Social</h4>
+          <a href="#">Twitter / X</a>
+          <a href="#">GitHub</a>
+          <a href="#">Discord</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2025 FlowState. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Toast Notification ── -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ── Scripts ── -->
+  <script>
+    /* ── Scroll-triggered fade-in animations (IntersectionObserver) ── */
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      /* ── Mobile nav toggle ── */
+      const navToggle = document.getElementById('navToggle');
+      const navMobile = document.getElementById('navMobile');
+      if (navToggle && navMobile) {
+        navToggle.addEventListener('click', () => {
+          navToggle.classList.toggle('active');
+          navMobile.classList.toggle('open');
+        });
+        navMobile.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navToggle.classList.remove('active');
+            navMobile.classList.remove('open');
+          });
+        });
+      }
+
+      /* ── Navbar background on scroll ── */
+      const nav = document.querySelector('.landing-nav');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+      /* ── Stripe pricing buttons ── */
+      /*
+       * ====================================================
+       * STRIPE INTEGRATION — PLACEHOLDER
+       * ====================================================
+       * To enable real Stripe Checkout, install Stripe.js:
+       *   <script src="https://js.stripe.com/v3/"><\/script>
+       *
+       * Then replace the simulated redirect below with:
+       *   const stripe = Stripe('pk_live_YOUR_PUBLISHABLE_KEY');
+       *   stripe.redirectToCheckout({
+       *     lineItems: [{ price: priceId, quantity: 1 }],
+       *     mode: 'subscription',
+       *     successUrl: window.location.origin + '/index.html?session_id={CHECKOUT_SESSION_ID}',
+       *     cancelUrl: window.location.origin + '/landing.html#pricing',
+       *   });
+       *
+       * Price IDs (set in your Stripe Dashboard):
+       *   pro  -> price_XXXXXXXXXXXXX
+       *   team -> price_XXXXXXXXXXXXX
+       * ====================================================
+       */
+      document.querySelectorAll('[data-stripe-plan]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const plan = btn.getAttribute('data-stripe-plan');
+
+          if (plan === 'free') {
+            window.location.href = 'index.html';
+            return;
+          }
+
+          // Show toast notification
+          showToast('Redirection vers Stripe...');
+
+          // Simulated redirect — replace with real Stripe Checkout
+          setTimeout(() => {
+            showToast(`Plan "${plan}" — Intégration Stripe à configurer.`);
+          }, 2000);
+        });
+      });
+
+      /* ── Toast helper ── */
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "FlowState — Productivity Hub",
+  "short_name": "FlowState",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#7c3aed",
+  "description": "Dashboard de productivité ultra-moderne",
+  "icons": []
+}
