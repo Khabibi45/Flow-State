@@ -3,8 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FlowState — Dashboard de productivité ultime">
-  <title>FlowState — Productivity Hub</title>
+  <meta name="description" content="FlowState — Dashboard de productivité gamifié. Focus Timer Pomodoro, gestion de tâches Kanban, notes, sons ambiants, système XP & badges. Organise ton travail et reste motivé.">
+  <meta name="keywords" content="productivité, focus timer, pomodoro, kanban, gestion tâches, notes, gamification, XP, badges, dashboard, concentration">
+  <meta name="author" content="FlowState">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://flowstate.app/app">
+  <meta name="language" content="fr">
+  <meta http-equiv="content-language" content="fr">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://flowstate.app/app">
+  <meta property="og:title" content="FlowState — Dashboard de Productivité">
+  <meta property="og:description" content="Dashboard de productivité gamifié. Focus Timer, Kanban Tasks, Notes, Sons Ambiants. Gagne de l'XP, débloque des badges, monte en niveau.">
+  <meta property="og:image" content="https://flowstate.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="FlowState">
+  <meta property="og:locale" content="fr_FR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://flowstate.app/app">
+  <meta name="twitter:title" content="FlowState — Dashboard de Productivité">
+  <meta name="twitter:description" content="Dashboard de productivité gamifié. Focus Timer, Tasks, Notes, XP & Badges.">
+  <meta name="twitter:image" content="https://flowstate.app/assets/og-image.png">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icon-192.png">
+  <link rel="mask-icon" href="assets/icon.svg" color="#7c3aed">
+
+  <title>FlowState — Dashboard de Productivité</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -433,5 +464,31 @@
 
   <!-- Scripts -->
   <script type="module" src="js/app.js"></script>
+
+  <!-- Service Worker -->
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
+  </script>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "FlowState",
+    "url": "https://flowstate.app/app",
+    "description": "Dashboard de productivité gamifié avec Focus Timer Pomodoro, gestion de tâches Kanban, notes, sons ambiants, système XP, badges et niveaux.",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "featureList": ["Focus Timer Pomodoro", "Kanban Task Management", "Rich Notes Editor", "Ambient Sounds", "XP & Level System", "Achievement Badges", "Daily Challenges", "Activity Heatmap"]
+  }
+  </script>
 </body>
 </html>

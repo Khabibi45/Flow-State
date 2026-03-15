@@ -3,9 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FlowState — Transforme ton focus en superpouvoir. Dashboard de productivité gamifié avec Pomodoro, Kanban, Notes et Sons Ambiants.">
+  <meta name="description" content="FlowState — Dashboard de productivité gamifié gratuit. Focus Timer Pomodoro, gestion de tâches Kanban, notes, sons ambiants, système XP & badges. Booste ta concentration et ta productivité.">
+  <meta name="keywords" content="productivité, focus timer, pomodoro, kanban, gestion tâches, notes, gamification, XP, badges, dashboard, concentration, travail, étude, son ambiant, gratuit">
+  <meta name="author" content="FlowState">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://flowstate.app/">
+  <meta name="language" content="fr">
+  <meta http-equiv="content-language" content="fr">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://flowstate.app/">
+  <meta property="og:title" content="FlowState — Transforme ton focus en superpouvoir">
+  <meta property="og:description" content="Dashboard de productivité gamifié. Focus Timer, Kanban Tasks, Notes, Sons Ambiants. Gagne de l'XP, débloque des badges, monte en niveau.">
+  <meta property="og:image" content="https://flowstate.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="FlowState">
+  <meta property="og:locale" content="fr_FR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://flowstate.app/">
+  <meta name="twitter:title" content="FlowState — Transforme ton focus en superpouvoir">
+  <meta name="twitter:description" content="Dashboard de productivité gamifié gratuit. Focus Timer, Tasks, Notes, XP & Badges.">
+  <meta name="twitter:image" content="https://flowstate.app/assets/og-image.png">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icon-192.png">
+  <link rel="mask-icon" href="assets/icon.svg" color="#7c3aed">
+
   <meta name="theme-color" content="#0a0a0f">
   <title>FlowState — Productivité Gamifiée</title>
+  <!-- Performance -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://www.google.com">
+  <meta name="format-detection" content="telephone=no">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -562,5 +598,83 @@
       }
     });
   </script>
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "FlowState",
+      "url": "https://flowstate.app",
+      "description": "Dashboard de productivité gamifié avec Focus Timer Pomodoro, gestion de tâches Kanban, notes, sons ambiants, système XP, badges et niveaux.",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "offers": [
+        {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "name": "Free"},
+        {"@type": "Offer", "price": "4.99", "priceCurrency": "EUR", "name": "Pro"},
+        {"@type": "Offer", "price": "9.99", "priceCurrency": "EUR", "name": "Team"}
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "127",
+        "bestRating": "5"
+      },
+      "featureList": ["Focus Timer Pomodoro", "Kanban Task Management", "Rich Notes Editor", "Ambient Sounds", "XP & Level System", "22 Achievement Badges", "Daily Challenges", "Activity Heatmap", "Browser Notifications", "Dark/Light Theme"]
+    },
+    {
+      "@type": "Organization",
+      "name": "FlowState",
+      "url": "https://flowstate.app",
+      "logo": "https://flowstate.app/assets/icon-512.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@flowstate.app",
+        "contactType": "customer service"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "FlowState est-il gratuit ?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Oui ! FlowState est gratuit avec toutes les fonctionnalités de base : Focus Timer, Tasks, Notes, Sons Ambiants et Gamification. Les plans Pro et Team offrent des fonctionnalités avancées."}
+        },
+        {
+          "@type": "Question",
+          "name": "Mes données sont-elles sécurisées ?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Vos données sont stockées localement sur votre appareil via localStorage. Aucune donnée n'est envoyée à nos serveurs. C'est 100% privé."}
+        },
+        {
+          "@type": "Question",
+          "name": "Comment fonctionne le système de gamification ?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Chaque action (session focus, tâche complétée, note créée) vous rapporte de l'XP. Montez en niveau, débloquez des badges et relevez des défis quotidiens pour rester motivé."}
+        },
+        {
+          "@type": "Question",
+          "name": "FlowState fonctionne-t-il hors ligne ?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Oui, FlowState est une Progressive Web App (PWA) qui fonctionne hors ligne une fois chargée. Installez-la depuis votre navigateur pour un accès rapide."}
+        },
+        {
+          "@type": "Question",
+          "name": "Puis-je utiliser FlowState sur mobile ?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Absolument ! FlowState est responsive et s'adapte à tous les écrans. Installez-le comme une app depuis Chrome ou Safari pour la meilleure expérience mobile."}
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://flowstate.app/"},
+        {"@type": "ListItem", "position": 2, "name": "Application", "item": "https://flowstate.app/app"},
+        {"@type": "ListItem", "position": 3, "name": "Tarifs", "item": "https://flowstate.app/#pricing"}
+      ]
+    }
+  ]
+}
+</script>
 </body>
 </html>

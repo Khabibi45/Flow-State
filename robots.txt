@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /css/
+
+Sitemap: https://flowstate.app/sitemap.xml
+
+# Crawl-delay: 1

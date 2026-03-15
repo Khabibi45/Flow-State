@@ -1,0 +1,14 @@
+/* TEAM */
+Name: FlowState Team
+Site: https://flowstate.app
+Contact: contact@flowstate.app
+
+/* TECHNOLOGY */
+HTML5, CSS3, JavaScript ES Modules
+Web Audio API, Notifications API
+Docker, Nginx
+
+/* SITE */
+Last update: 2025-03-15
+Language: French
+Standards: HTML5, CSS3, ES2022
