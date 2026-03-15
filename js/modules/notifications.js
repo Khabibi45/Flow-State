@@ -175,9 +175,9 @@ export class NotificationManager {
         this.isIdle = true;
         this.onEvent({ type: 'idle', minutes: Math.round(idleMinutes) });
         this.sendBrowserNotif(
-          'Tu es encore là ? 👋',
+          'Tu es encore là ?',
           'Lance une session focus pour rester productif !',
-          '⏰'
+          '◆'
         );
       }
     }, 30000); // Check every 30s
@@ -227,9 +227,9 @@ export class NotificationManager {
   notifyTimerComplete(isBreak) {
     this.playSound(isBreak ? 'break' : 'complete');
     this.sendBrowserNotif(
-      isBreak ? 'Pause terminée ! 💪' : 'Session terminée ! 🎉',
+      isBreak ? 'Pause terminée !' : 'Session terminée !',
       isBreak ? 'C\'est reparti pour une session de focus !' : 'Bravo ! Prends une pause bien méritée.',
-      isBreak ? '▶️' : '✅',
+      '◆',
       'timer-complete'
     );
     Storage.set('lastSessionEnd', Date.now());
@@ -258,9 +258,9 @@ export class NotificationManager {
   notifyChallenge(challenge) {
     this.playSound('challenge');
     this.sendBrowserNotif(
-      'Défi complété ! 🏆',
+      'Défi complété !',
       challenge.desc,
-      '🏆',
+      '◆',
       'challenge-complete'
     );
   }

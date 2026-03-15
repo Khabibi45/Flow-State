@@ -157,7 +157,7 @@
             </div>
             <div class="stat-item">
               <span class="stat-value" id="statStreak">0</span>
-              <span class="stat-label">Streak 🔥</span>
+              <span class="stat-label">Streak</span>
             </div>
             <div class="stat-item">
               <span class="stat-value" id="statNotes">0</span>
@@ -463,6 +463,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script type="module" src="js/app.js"></script>
 
   <!-- Service Worker -->
@@ -471,6 +472,8 @@
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   }
   </script>
+
+  <script>lucide.createIcons();</script>
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">

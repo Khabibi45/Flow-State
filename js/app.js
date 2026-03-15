@@ -9,6 +9,25 @@ import { AmbientEngine } from './modules/ambient.js';
 import { Gamification } from './modules/gamification.js';
 import { NotificationManager } from './modules/notifications.js';
 
+// ── Lucide Inline SVG Icons ──
+function lucideIcon(name) {
+  const icons = {
+    'bar-chart-3': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>',
+    'target': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+    'check-square': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+    'file-text': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>',
+    'link': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+    'plus-circle': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>',
+    'file-plus': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>',
+    'play-circle': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>',
+    'rotate-ccw': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>',
+    'moon': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+    'volume-x': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>',
+    'maximize': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>',
+  };
+  return icons[name] || name;
+}
+
 // ── Global App State ──
 const App = {
   currentView: 'dashboard',
@@ -68,7 +87,7 @@ function initGamification() {
       case 'challenge':
         App.notifications.notifyChallenge(event.challenge);
         renderChallenges();
-        toast(`Défi complété ! +${event.challenge.xp} XP 🏆`, 'success');
+        toast(`Défi complété ! +${event.challenge.xp} XP`, 'success');
         spawnConfetti();
         break;
     }
@@ -89,7 +108,7 @@ function updateXPBar() {
 
   const mult = stats.streakMultiplier;
   const multEl = document.getElementById('xpMultiplier');
-  multEl.textContent = `x${mult.toFixed(1)} 🔥`;
+  multEl.textContent = `x${mult.toFixed(1)}`;
   multEl.classList.toggle('active', mult > 1);
 
   // Update avatar border color based on rank
@@ -217,7 +236,7 @@ function initNotifications() {
         showWelcomeBack(event.hoursSince);
         break;
       case 'first_visit':
-        toast('Bienvenue sur FlowState ! 🚀', 'success');
+        toast('Bienvenue sur FlowState !', 'success');
         break;
       case 'active_again':
         removeIdleBanner();
@@ -233,7 +252,7 @@ function showIdleBanner(minutes) {
   banner.className = 'idle-banner';
   banner.id = 'idleBanner';
   banner.innerHTML = `
-    <span class="idle-banner-icon">💤</span>
+    <span class="idle-banner-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
     <div class="idle-banner-text">
       <strong>Inactif depuis ${minutes} min</strong>
       Lance une session focus pour rester productif !
@@ -259,9 +278,9 @@ function removeIdleBanner() {
 
 function showReminderBanner(minutes) {
   App.notifications.sendBrowserNotif(
-    'FlowState attend ! ⏰',
+    'FlowState attend !',
     `Pas de session depuis ${minutes} min. Reviens en focus !`,
-    '⏰'
+    '◆'
   );
   App.notifications.playSound('reminder');
 }
@@ -275,7 +294,7 @@ function showWelcomeBack(hours) {
   overlay.className = 'welcome-overlay';
   overlay.innerHTML = `
     <div class="welcome-card">
-      <div class="welcome-emoji">👋</div>
+      <div class="welcome-emoji"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
       <div class="welcome-title">Bon retour !</div>
       <div class="welcome-subtitle">
         ${hours >= 24 ? `Ça fait ${Math.round(hours / 24)} jour(s) !` : `Absent ${hours}h`} — ton streak t'attend
@@ -298,7 +317,7 @@ function showWelcomeBack(hours) {
           <span class="welcome-stat-label">Sessions</span>
         </div>
       </div>
-      <button class="welcome-cta" id="welcomeStart">C'est parti ! 🚀</button>
+      <button class="welcome-cta" id="welcomeStart">C'est parti !</button>
     </div>
   `;
   document.getElementById('dynamicOverlays').appendChild(overlay);
@@ -408,10 +427,10 @@ function initTimer() {
 
       if (!isBreak) {
         spawnConfetti();
-        toast('Session terminée ! Pause bien méritée 🎉', 'success');
+        toast('Session terminée ! Pause bien méritée', 'success');
         document.getElementById('focusLabel').textContent = 'Pause';
       } else {
-        toast('Pause terminée ! C\'est reparti 💪', 'info');
+        toast('Pause terminée ! C\'est reparti', 'info');
         document.getElementById('focusLabel').textContent = 'Focus';
       }
     },
@@ -912,7 +931,7 @@ function renderLinks(filterCat = null) {
     card.innerHTML = `
       <div class="link-favicon">
         <img src="${getFaviconUrl(link.url)}" alt="${escapeHtml(link.title)}" width="28" height="28"
-             onerror="this.style.display='none';this.parentElement.textContent='🔗'">
+             onerror="this.style.display='none';this.parentElement.innerHTML='<svg width=\\'20\\' height=\\'20\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'2\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'><path d=\\'M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\\'/><path d=\\'M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\\'/></svg>'">
       </div>
       <div class="link-info">
         <div class="link-info-title">${escapeHtml(link.title)}</div>
@@ -947,7 +966,7 @@ function renderQuickLinks() {
       <div class="quick-link-icon">
         <img src="${getFaviconUrl(link.url)}" alt="" width="20" height="20"
              style="border-radius:4px"
-             onerror="this.style.display='none';this.parentElement.textContent='🔗'">
+             onerror="this.style.display='none';this.parentElement.innerHTML='<svg width=\\'16\\' height=\\'16\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'2\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'><path d=\\'M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\\'/><path d=\\'M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\\'/></svg>'">
       </div>
       <span>${escapeHtml(link.title)}</span>
     `;
@@ -990,18 +1009,18 @@ function initCommandPalette() {
   const list = document.getElementById('commandList');
 
   const commands = [
-    { icon: '📊', label: 'Dashboard', action: () => switchView('dashboard'), shortcut: '1' },
-    { icon: '🎯', label: 'Focus Timer', action: () => switchView('focus'), shortcut: '2' },
-    { icon: '✅', label: 'Tâches', action: () => switchView('tasks'), shortcut: '3' },
-    { icon: '📝', label: 'Notes', action: () => switchView('notes'), shortcut: '4' },
-    { icon: '🔗', label: 'Liens', action: () => switchView('links'), shortcut: '5' },
-    { icon: '➕', label: 'Nouvelle tâche', action: () => { switchView('tasks'); setTimeout(() => openTaskModal(), 100); } },
-    { icon: '📄', label: 'Nouvelle note', action: () => { switchView('notes'); document.getElementById('addNoteBtn').click(); } },
-    { icon: '⏯️', label: 'Timer Start/Pause', action: () => App.timer.toggle(), shortcut: 'Space' },
-    { icon: '🔄', label: 'Timer Reset', action: () => App.timer.reset() },
-    { icon: '🌙', label: 'Toggle Theme', action: () => document.getElementById('themeToggle').click() },
-    { icon: '🔇', label: 'Stop Ambient', action: () => { App.ambient.stopAll(); document.querySelectorAll('.ambient-btn').forEach(b => b.classList.remove('active')); } },
-    { icon: '⛶', label: 'Fullscreen', action: () => document.getElementById('fullscreenToggle').click() },
+    { icon: lucideIcon('bar-chart-3'), label: 'Dashboard', action: () => switchView('dashboard'), shortcut: '1' },
+    { icon: lucideIcon('target'), label: 'Focus Timer', action: () => switchView('focus'), shortcut: '2' },
+    { icon: lucideIcon('check-square'), label: 'Tâches', action: () => switchView('tasks'), shortcut: '3' },
+    { icon: lucideIcon('file-text'), label: 'Notes', action: () => switchView('notes'), shortcut: '4' },
+    { icon: lucideIcon('link'), label: 'Liens', action: () => switchView('links'), shortcut: '5' },
+    { icon: lucideIcon('plus-circle'), label: 'Nouvelle tâche', action: () => { switchView('tasks'); setTimeout(() => openTaskModal(), 100); } },
+    { icon: lucideIcon('file-plus'), label: 'Nouvelle note', action: () => { switchView('notes'); document.getElementById('addNoteBtn').click(); } },
+    { icon: lucideIcon('play-circle'), label: 'Timer Start/Pause', action: () => App.timer.toggle(), shortcut: 'Space' },
+    { icon: lucideIcon('rotate-ccw'), label: 'Timer Reset', action: () => App.timer.reset() },
+    { icon: lucideIcon('moon'), label: 'Toggle Theme', action: () => document.getElementById('themeToggle').click() },
+    { icon: lucideIcon('volume-x'), label: 'Stop Ambient', action: () => { App.ambient.stopAll(); document.querySelectorAll('.ambient-btn').forEach(b => b.classList.remove('active')); } },
+    { icon: lucideIcon('maximize'), label: 'Fullscreen', action: () => document.getElementById('fullscreenToggle').click() },
   ];
 
   function render(filter = '') {
@@ -1062,9 +1081,13 @@ function initFullscreen() {
 function toast(message, type = 'info') {
   const container = document.getElementById('toastContainer');
   const el = document.createElement('div');
-  const icons = { success: '✓', error: '✕', info: 'ℹ' };
+  const icons = {
+    success: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+    error: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    info: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+  };
   el.className = `toast toast-${type}`;
-  el.innerHTML = `<span class="toast-icon">${icons[type] || 'ℹ'}</span> ${escapeHtml(message)}`;
+  el.innerHTML = `<span class="toast-icon">${icons[type] || icons.info}</span> ${escapeHtml(message)}`;
   container.appendChild(el);
   setTimeout(() => { el.classList.add('leaving'); setTimeout(() => el.remove(), 300); }, 3000);
 }

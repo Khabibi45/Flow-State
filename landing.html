@@ -71,7 +71,8 @@
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#privacy">Privacy</a></li>
       </ul>
-      <a href="index.html" class="btn btn-primary btn-sm">Lancer l'app</a>
+      <a href="login.html" class="nav-login-link">Connexion</a>
+      <a href="login.html" class="btn btn-primary btn-sm">Lancer l'app</a>
       <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -81,7 +82,7 @@
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="#privacy">Privacy</a>
-      <a href="index.html" class="btn btn-primary btn-sm" style="margin-top:0.5rem;">Lancer l'app</a>
+      <a href="login.html" class="btn btn-primary btn-sm" style="margin-top:0.5rem;">Lancer l'app</a>
     </div>
   </nav>
 
@@ -99,7 +100,7 @@
         Le dashboard de productivité qui combine Pomodoro, Kanban, Notes et Sons Ambiants — le tout gamifié avec XP, badges et niveaux pour rester motivé.
       </p>
       <div class="hero-cta fade-in">
-        <a href="index.html" class="btn btn-primary btn-lg">
+        <a href="login.html" class="btn btn-primary btn-lg">
           Commencer gratuitement
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -460,7 +461,7 @@
     <div class="container cta-inner fade-in">
       <h2 class="cta-title">Prêt à booster ta productivité ?</h2>
       <p class="cta-subtitle">Rejoins des centaines d'étudiants et développeurs qui utilisent FlowState chaque jour.</p>
-      <a href="index.html" class="btn btn-primary btn-lg">
+      <a href="login.html" class="btn btn-primary btn-lg">
         Commencer maintenant
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -575,7 +576,7 @@
           const plan = btn.getAttribute('data-stripe-plan');
 
           if (plan === 'free') {
-            window.location.href = 'index.html';
+            window.location.href = 'login.html';
             return;
           }
 
@@ -676,5 +677,7 @@
   ]
 }
 </script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>
