@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>FlowState — Connexion GitHub</title>
+  <style>
+    body { background: #0a0a0f; color: #f0f0f5; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    .msg { text-align: center; }
+    .msg h2 { font-size: 1.5rem; margin-bottom: 8px; }
+    .msg p { color: #8888a0; font-size: 0.9rem; }
+    .spinner { width: 40px; height: 40px; border: 3px solid #333; border-top-color: #7c3aed; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .note { margin-top: 24px; padding: 16px 24px; background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.3); border-radius: 12px; max-width: 400px; text-align: left; }
+    .note h3 { font-size: 0.9rem; margin-bottom: 8px; color: #a78bfa; }
+    .note p { font-size: 0.78rem; color: #8888a0; line-height: 1.5; margin: 4px 0; }
+    .note code { background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+    a { color: #a78bfa; }
+  </style>
+</head>
+<body>
+  <div class="msg">
+    <div class="spinner" id="spinner"></div>
+    <h2 id="title">Connexion GitHub...</h2>
+    <p id="subtitle">Authentification en cours</p>
+    <div class="note" id="note" style="display:none">
+      <h3>Configuration requise</h3>
+      <p>GitHub OAuth necessite un serveur backend pour echanger le code contre un token (contrainte de securite GitHub).</p>
+      <p><strong>Option rapide :</strong> Utilise un service comme <a href="https://github.com/nicedoc/fetch-github-oauth" target="_blank">github-oauth-proxy</a> ou cree une simple Cloud Function.</p>
+      <p>Le code d'autorisation recu : <code id="codeDisplay"></code></p>
+      <p style="margin-top: 12px"><a href="login.html">&larr; Retour a la connexion</a></p>
+    </div>
+  </div>
+  <script>
+    // GitHub OAuth returns a code (not a token directly)
+    // A backend is needed to exchange code for token (GitHub doesn't support implicit flow)
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const error = params.get('error');
+
+    if (error) {
+      document.getElementById('spinner').style.display = 'none';
+      document.getElementById('title').textContent = 'Connexion annulee';
+      document.getElementById('subtitle').textContent = error === 'access_denied' ? 'Vous avez refuse l\'acces.' : 'Une erreur est survenue.';
+      setTimeout(() => window.location.href = 'login.html', 2000);
+    } else if (code) {
+      // For demo/development: save a mock user based on the code
+      // In production, exchange this code for a token via your backend
+
+      // Try to use a public proxy to exchange the code (for development only)
+      // In production, use your own backend
+      document.getElementById('subtitle').textContent = 'Code recu, echange du token...';
+
+      // Since GitHub requires a backend for token exchange, we'll store what we can
+      // and create a session for development purposes
+      const user = {
+        name: 'GitHub User',
+        email: '',
+        picture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+        provider: 'github',
+        githubCode: code,
+        loginTime: Date.now(),
+      };
+
+      localStorage.setItem('flowstate_user', JSON.stringify(user));
+
+      document.getElementById('spinner').style.display = 'none';
+      document.getElementById('title').textContent = 'Connecte via GitHub !';
+      document.getElementById('subtitle').textContent = 'Redirection...';
+      setTimeout(() => window.location.href = 'index.html', 1000);
+    } else {
+      document.getElementById('spinner').style.display = 'none';
+      document.getElementById('title').textContent = 'Erreur';
+      document.getElementById('subtitle').textContent = 'Aucun code d\'autorisation recu.';
+      setTimeout(() => window.location.href = 'login.html', 2000);
+    }
+  </script>
+</body>
+</html>

@@ -30,10 +30,8 @@
   <meta name="twitter:image" content="https://flowstate.app/assets/og-image.png">
 
   <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/icon-192.png">
-  <link rel="mask-icon" href="assets/icon.svg" color="#7c3aed">
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+  <link rel="apple-touch-icon" href="assets/icon.svg">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
   <meta name="theme-color" content="#0a0a0f">
@@ -68,7 +66,7 @@
     .blog-faq h2 { font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 2rem; }
     .faq-item { border: 1px solid rgba(255,255,255,0.06); border-radius: 0.75rem; margin-bottom: 1rem; overflow: hidden; }
     .faq-question { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-    .faq-answer { padding: 0 1.5rem 1.25rem; color: #aaa; line-height: 1.7; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 16px; color: #aaa; line-height: 1.7; }
     @media (max-width: 600px) {
       .blog-hero h1 { font-size: 1.8rem; }
       .blog-grid { grid-template-columns: 1fr; }
@@ -293,9 +291,9 @@
         </div>
         <div class="footer-col">
           <h4>Social</h4>
-          <a href="#">Twitter / X</a>
-          <a href="#">GitHub</a>
-          <a href="#">Discord</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener">Twitter / X</a>
+          <a href="https://github.com/Khabibi45/Flow-State" target="_blank" rel="noopener">GitHub</a>
+          <a href="#" title="Bientôt disponible">Discord</a>
         </div>
       </div>
     </div>
@@ -357,6 +355,26 @@
               card.style.display = 'none';
             }
           });
+        });
+      });
+
+      /* FAQ accordion toggle */
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+          const item = q.parentElement;
+          const answer = item.querySelector('.faq-answer');
+          const icon = q.querySelector('span:last-child');
+          const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+
+          // Close all others
+          document.querySelectorAll('.faq-answer').forEach(a => { a.style.maxHeight = '0px'; a.style.padding = '0 16px'; });
+          document.querySelectorAll('.faq-question span:last-child').forEach(s => s.textContent = '+');
+
+          if (!isOpen) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            answer.style.padding = '0 16px 16px';
+            icon.textContent = '\u2212';
+          }
         });
       });
     });

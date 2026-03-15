@@ -524,7 +524,7 @@ function initAudioPlayer() {
   });
 
   // Check for Spotify token from callback
-  const spotifyToken = JSON.parse(localStorage.getItem('flowstate_spotify_token') || 'null');
+  const spotifyToken = localStorage.getItem('flowstate_spotify_token');
   if (spotifyToken) {
     localStorage.removeItem('flowstate_spotify_token');
     App.audioPlayer.setSpotifyToken(spotifyToken);

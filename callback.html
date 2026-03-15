@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>FlowState — Connexion Spotify</title>
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
   <style>
     body { background: #0a0a0f; color: #f0f0f5; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
     .msg { text-align: center; }
@@ -25,7 +26,7 @@
     const token = params.get('access_token');
 
     if (token) {
-      localStorage.setItem('flowstate_spotify_token', JSON.stringify(token));
+      localStorage.setItem('flowstate_spotify_token', token);
       // Redirect back to app
       window.location.href = 'index.html';
     } else {
